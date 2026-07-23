@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; }
+    @keyframes nodeFloat {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(6px, -10px); }
+      100% { transform: translate(0, 0); }
+    }
+    @keyframes nodeFloatSlow {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(-8px, 8px); }
+      100% { transform: translate(0, 0); }
+    }
+  </style>
+</helmet>
+
+<div style="{{ rootStyle }}" data-screen-label="Knord Technologies — Landing Page">
+
+  <!-- NAV -->
+  <nav style="{{ navStyle }}">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <div style="{{ logoBoxStyle }}">K</div>
+      <span style="{{ wordmarkStyle }}">Knord</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:36px;">
+      <div style="display:flex; align-items:center; gap:32px;">
+        <a href="#what-we-do" style="{{ navLinkStyle }}">What we do</a>
+        <a href="#products" style="{{ navLinkStyle }}">Products</a>
+        <a href="#why-knord" style="{{ navLinkStyle }}">Why Knord</a>
+        <a href="#contact" style="{{ navLinkStyle }}">Contact</a>
+      </div>
+      <button onClick="{{ toggleTheme }}" style="{{ toggleTrackStyle }}" aria-label="Toggle dark mode">
+        <span style="{{ toggleThumbStyle }}"></span>
+      </button>
+      <a href="#contact" style="{{ navCtaStyle }}">Get in touch</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section style="{{ heroSectionStyle }}" data-screen-label="Hero">
+    <div style="{{ motifWrapStyle }}">
+      <sc-for list="{{ nodes }}" as="n" hint-placeholder-count="9">
+        <div style="{{ n.style }}"></div>
+      </sc-for>
+      <sc-for list="{{ lines }}" as="ln" hint-placeholder-count="4">
+        <div style="{{ ln.style }}"></div>
+      </sc-for>
+    </div>
+    <div style="{{ heroContentStyle }}">
+      <div style="{{ eyebrowStyle }}">Knord Technologies</div>
+      <h1 style="{{ heroHeadingStyle }}">Operational technology, built for how real businesses actually run.</h1>
+      <p style="{{ heroSubStyle }}">We design and build enterprise software that removes friction from day-to-day operations — starting with Nityavali, our flagship platform for professional services businesses.</p>
+      <div style="display:flex; gap:16px; flex-wrap:wrap; margin-top:8px;">
+        <a href="./Nityavali.html" target="_blank" rel="noopener" style="{{ heroPrimaryBtnStyle }}">Explore Nityavali</a>
+        <a href="#contact" style="{{ heroSecondaryBtnStyle }}">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section id="what-we-do" style="{{ whatWeDoWrapStyle }}" data-screen-label="What we do">
+    <div style="{{ whatWeDoInnerStyle }}" ref="{{ wwdRef }}">
+      <div style="{{ sectionEyebrowStyle }}">What we do</div>
+      <h2 style="{{ sectionHeadingStyle }}">We build the software that runs the business behind the business.</h2>
+      <p style="{{ bodyTextStyle }}">Knord Technologies exists to solve the unglamorous, high-stakes problems that keep operational businesses running — scheduling, delivery, billing, resourcing. We build serious, dependable products for the people who depend on them every day, not demos built for a pitch deck.</p>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" style="{{ productsWrapStyle }}" data-screen-label="Products">
+    <div style="{{ productsInnerStyle }}" ref="{{ productsRef }}">
+      <div style="{{ sectionEyebrowStyle }}">Products</div>
+      <h2 style="{{ sectionHeadingStyle }}">One flagship product today. More on the way.</h2>
+      <div style="{{ productsGridStyle }}">
+        <div style="{{ productCardStyle }}">
+          <div style="{{ flagshipBadgeStyle }}">Flagship product</div>
+          <h3 style="{{ productTitleStyle }}">Nityavali</h3>
+          <p style="{{ productDescStyle }}">An operations management platform built for professional services businesses — scheduling, billing, resourcing, and delivery, handled in one place, end to end.</p>
+          <a href="./Nityavali.html" target="_blank" rel="noopener" style="{{ productLinkStyle }}">Visit Nityavali &#8594;</a>
+        </div>
+        <div style="{{ teaserCardStyle }}">
+          <div style="{{ comingSoonBadgeStyle }}">Coming soon</div>
+          <h3 style="{{ productTitleStyle }}">An AI agent workforce</h3>
+          <p style="{{ productDescStyle }}">Our next product, in development — an AI-native platform for putting autonomous agents to work inside real operational businesses.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY KNORD -->
+  <section id="why-knord" style="{{ whyWrapStyle }}" data-screen-label="Why Knord">
+    <div style="{{ whyInnerStyle }}" ref="{{ whyRef }}">
+      <div style="{{ sectionEyebrowStyle }}">Why Knord</div>
+      <h2 style="{{ sectionHeadingStyle }}">A young company, built on real operational understanding.</h2>
+      <div style="{{ whyGridStyle }}">
+        <div style="{{ whyCardStyle }}">
+          <div style="{{ whyNumStyle }}">01</div>
+          <h3 style="{{ whyTitleStyle }}">Rooted in real pain points</h3>
+          <p style="{{ whyDescStyle }}">We start with the operational friction real businesses deal with every day, not a whiteboard idea — and build products that actually resolve it.</p>
+        </div>
+        <div style="{{ whyCardStyle }}">
+          <div style="{{ whyNumStyle }}">02</div>
+          <h3 style="{{ whyTitleStyle }}">AI-native, not bolted on</h3>
+          <p style="{{ whyDescStyle }}">Our products are designed for how work is actually going to happen — built AI-native from the start, not retrofitted after the fact.</p>
+        </div>
+        <div style="{{ whyCardStyle }}">
+          <div style="{{ whyNumStyle }}">03</div>
+          <h3 style="{{ whyTitleStyle }}">India-based, customer-first</h3>
+          <p style="{{ whyDescStyle }}">An emerging technology company working closely with the businesses we serve, from India, for operational teams everywhere.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="{{ contactWrapStyle }}" data-screen-label="Contact">
+    <div style="{{ contactInnerStyle }}" ref="{{ contactRef }}">
+      <div style="{{ sectionEyebrowStyle }}">Contact</div>
+      <h2 style="{{ sectionHeadingStyle }}">Let's talk about what you're building.</h2>
+      <div style="display:flex; flex-direction:column; gap:10px; margin-top:8px;">
+        <a href="mailto:hello@knord.tech" style="{{ contactEmailStyle }}">hello@knord.tech</a>
+        <span style="{{ contactAddressStyle }}">Knord Technologies &middot; India</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="{{ footerStyle }}">
+    <div style="{{ footerTopStyle }}">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="{{ footerLogoBoxStyle }}">K</div>
+        <span style="{{ footerWordmarkStyle }}">Knord Technologies</span>
+      </div>
+      <div style="display:flex; gap:28px; flex-wrap:wrap;">
+        <a href="#what-we-do" style="{{ footerLinkStyle }}">What we do</a>
+        <a href="#products" style="{{ footerLinkStyle }}">Products</a>
+        <a href="#why-knord" style="{{ footerLinkStyle }}">Why Knord</a>
+        <a href="#contact" style="{{ footerLinkStyle }}">Contact</a>
+        <a href="mailto:hello@knord.tech" style="{{ footerLinkStyle }}">hello@knord.tech</a>
+      </div>
+    </div>
+    <div style="{{ footerBottomStyle }}">&copy; 2026 Knord Technologies. All rights reserved.</div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const INDIGO = '#2E5CE0';
+const INDIGO_DEEP = '#1E2A4A';
+const AMBER = '#FF6B4A';
+
+class Component extends DCLogic {
+  state = {
+    dark: false,
+    vis: {}
+  };
+
+  componentDidMount() {
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          const id = e.target.getAttribute('data-reveal-id');
+          this.setState((s) => ({ vis: { ...s.vis, [id]: true } }));
+        }
+      });
+    }, { threshold: 0.15 });
+    this._pending && this._pending.forEach((el) => this.io.observe(el));
+  }
+
+  registerReveal = (id) => (el) => {
+    if (!el) return;
+    el.setAttribute('data-reveal-id', id);
+    if (this.io) this.io.observe(el);
+    else { this._pending = this._pending || []; this._pending.push(el); }
+  };
+
+  toggleTheme = () => this.setState((s) => ({ dark: !s.dark }));
+
+  revealStyle(id, extra) {
+    const visible = !!this.state.vis[id];
+    return Object.assign({
+      opacity: visible ? 1 : 0,
+      transform: visible ? 'translateY(0)' : 'translateY(28px)',
+      transition: 'opacity 0.8s ease, transform 0.8s ease'
+    }, extra || {});
+  }
+
+  renderVals() {
+    const dark = this.state.dark;
+    const theme = dark ? {
+      bg: '#12141B',
+      bgAlt: '#171A24',
+      text: '#F2F1EC',
+      textMuted: 'rgba(242,241,236,0.68)',
+      heading: '#F2F1EC',
+      indigo: '#9FB0EA',
+      cardBg: '#1A1D28',
+      cardBorder: 'rgba(242,241,236,0.10)',
+      border: 'rgba(242,241,236,0.10)',
+      navBg: 'rgba(18,20,27,0.85)'
+    } : {
+      bg: '#FAFAFA',
+      bgAlt: '#F3F2F5',
+      text: INDIGO_DEEP,
+      textMuted: 'rgba(43,58,103,0.66)',
+      heading: INDIGO_DEEP,
+      indigo: INDIGO,
+      cardBg: '#FFFFFF',
+      cardBorder: 'rgba(43,58,103,0.10)',
+      border: 'rgba(43,58,103,0.10)',
+      navBg: 'rgba(250,250,250,0.85)'
+    };
+    const trans = 'background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease';
+
+    const rootStyle = {
+      backgroundColor: theme.bg,
+      color: theme.text,
+      minHeight: '100vh',
+      transition: trans,
+      overflowX: 'hidden'
+    };
+
+    const navStyle = {
+      position: 'sticky', top: 0, zIndex: 50,
+      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      padding: '20px 56px',
+      backgroundColor: theme.navBg,
+      backdropFilter: 'blur(10px)',
+      borderBottom: `1px solid ${theme.border}`,
+      transition: trans
+    };
+    const logoBoxStyle = {
+      width: 32, height: 32, borderRadius: 8,
+      backgroundColor: theme.indigo, color: dark ? '#12141B' : '#FAFAFA',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      fontWeight: 800, fontSize: 15, transition: trans
+    };
+    const wordmarkStyle = { fontSize: 17, fontWeight: 700, letterSpacing: '-0.01em', color: theme.heading, transition: trans };
+    const navLinkStyle = { fontSize: 14.5, fontWeight: 500, color: theme.textMuted, transition: trans };
+    const navCtaStyle = {
+      fontSize: 14, fontWeight: 600, color: dark ? '#12141B' : '#FFFFFF',
+      backgroundColor: AMBER, padding: '9px 18px', borderRadius: 8, transition: trans,
+      whiteSpace: 'nowrap', flexShrink: 0
+    };
+    const toggleTrackStyle = {
+      width: 44, height: 24, borderRadius: 999, border: 'none', cursor: 'pointer',
+      backgroundColor: dark ? theme.indigo : 'rgba(43,58,103,0.18)',
+      position: 'relative', padding: 0, transition: trans, flexShrink: 0
+    };
+    const toggleThumbStyle = {
+      position: 'absolute', top: 3, left: dark ? 23 : 3,
+      width: 18, height: 18, borderRadius: '50%', backgroundColor: '#FFFFFF',
+      transition: 'left 0.35s cubic-bezier(0.4,0,0.2,1)', boxShadow: '0 1px 3px rgba(0,0,0,0.25)'
+    };
+
+    // hero network motif
+    const seedPositions = [
+      [8, 22], [22, 60], [16, 82], [38, 14], [46, 48],
+      [62, 30], [70, 68], [84, 18], [90, 52]
+    ];
+    const nodes = seedPositions.map((p, i) => ({
+      style: {
+        position: 'absolute', left: p[0] + '%', top: p[1] + '%',
+        width: i % 3 === 0 ? 8 : 5, height: i % 3 === 0 ? 8 : 5, borderRadius: '50%',
+        backgroundColor: i % 4 === 0 ? AMBER : theme.indigo,
+        opacity: dark ? 0.5 : 0.35,
+        animation: `${i % 2 === 0 ? 'nodeFloat' : 'nodeFloatSlow'} ${7 + i}s ease-in-out infinite`,
+        transition: 'background-color 0.6s ease'
+      }
+    }));
+    const linkPairs = [[0, 4], [4, 5], [1, 4], [6, 8]];
+    const lines = linkPairs.map(([a, b]) => {
+      const p1 = seedPositions[a], p2 = seedPositions[b];
+      const dx = p2[0] - p1[0], dy = p2[1] - p1[1];
+      const len = Math.sqrt(dx * dx + dy * dy);
+      const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+      return {
+        style: {
+          position: 'absolute', left: p1[0] + '%', top: p1[1] + '%',
+          width: len + '%', height: 1,
+          backgroundColor: theme.indigo, opacity: dark ? 0.22 : 0.16,
+          transformOrigin: '0 0', transform: `rotate(${angle}deg)`,
+          transition: 'background-color 0.6s ease'
+        }
+      };
+    });
+
+    const motifWrapStyle = { position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' };
+    const heroSectionStyle = {
+      position: 'relative', padding: '160px 56px 140px', display: 'flex',
+      justifyContent: 'center', overflow: 'hidden'
+    };
+    const heroContentStyle = { position: 'relative', maxWidth: 780, textAlign: 'center', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 22 };
+    const eyebrowStyle = { fontSize: 14, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: AMBER };
+    const heroHeadingStyle = { fontSize: 56, fontWeight: 800, lineHeight: 1.12, letterSpacing: '-0.02em', color: theme.heading, margin: 0, transition: trans };
+    const heroSubStyle = { fontSize: 19, lineHeight: 1.6, color: theme.textMuted, margin: 0, maxWidth: 620, transition: trans };
+    const heroPrimaryBtnStyle = { backgroundColor: AMBER, color: dark ? '#12141B' : '#FFFFFF', fontSize: 15.5, fontWeight: 600, padding: '14px 26px', borderRadius: 10, transition: trans };
+    const heroSecondaryBtnStyle = { border: `1.5px solid ${theme.border}`, color: theme.heading, fontSize: 15.5, fontWeight: 600, padding: '13px 26px', borderRadius: 10, transition: trans };
+
+    const sectionEyebrowStyle = { fontSize: 13.5, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: theme.indigo, transition: trans };
+    const sectionHeadingStyle = { fontSize: 36, fontWeight: 700, letterSpacing: '-0.015em', color: theme.heading, margin: '10px 0 0', lineHeight: 1.25, transition: trans, maxWidth: 700 };
+    const bodyTextStyle = { fontSize: 17, lineHeight: 1.75, color: theme.textMuted, marginTop: 20, maxWidth: 680, transition: trans };
+
+    const whatWeDoWrapStyle = { backgroundColor: theme.bgAlt, padding: '100px 56px', transition: trans };
+    const whatWeDoInnerStyle = Object.assign({ maxWidth: 900, margin: '0 auto' }, this.revealStyle('wwd'));
+
+    const productsWrapStyle = { padding: '110px 56px', transition: trans };
+    const productsInnerStyle = Object.assign({ maxWidth: 1080, margin: '0 auto' }, this.revealStyle('products'));
+    const productsGridStyle = { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 28, marginTop: 44 };
+    const productCardStyle = { backgroundColor: theme.cardBg, border: `1px solid ${theme.cardBorder}`, borderRadius: 16, padding: 36, transition: trans };
+    const teaserCardStyle = { backgroundColor: 'transparent', border: `1.5px dashed ${theme.border}`, borderRadius: 16, padding: 36, transition: trans };
+    const flagshipBadgeStyle = { display: 'inline-block', fontSize: 12.5, fontWeight: 700, letterSpacing: '0.04em', color: dark ? '#12141B' : '#FFFFFF', backgroundColor: theme.indigo, padding: '5px 12px', borderRadius: 999, transition: trans };
+    const comingSoonBadgeStyle = { display: 'inline-block', fontSize: 12.5, fontWeight: 700, letterSpacing: '0.04em', color: theme.textMuted, border: `1px solid ${theme.border}`, padding: '5px 12px', borderRadius: 999, transition: trans };
+    const productTitleStyle = { fontSize: 24, fontWeight: 700, color: theme.heading, margin: '18px 0 0', transition: trans };
+    const productDescStyle = { fontSize: 15.5, lineHeight: 1.65, color: theme.textMuted, marginTop: 12, transition: trans };
+    const productLinkStyle = { display: 'inline-block', marginTop: 20, fontSize: 15, fontWeight: 600, color: AMBER };
+
+    const whyWrapStyle = { backgroundColor: theme.bgAlt, padding: '110px 56px', transition: trans };
+    const whyInnerStyle = Object.assign({ maxWidth: 1080, margin: '0 auto' }, this.revealStyle('why'));
+    const whyGridStyle = { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 40, marginTop: 48 };
+    const whyCardStyle = {};
+    const whyNumStyle = { fontSize: 14, fontWeight: 700, color: AMBER, letterSpacing: '0.05em' };
+    const whyTitleStyle = { fontSize: 20, fontWeight: 700, color: theme.heading, margin: '12px 0 0', transition: trans };
+    const whyDescStyle = { fontSize: 15, lineHeight: 1.65, color: theme.textMuted, marginTop: 10, transition: trans };
+
+    const contactWrapStyle = { padding: '120px 56px', transition: trans };
+    const contactInnerStyle = Object.assign({ maxWidth: 640, margin: '0 auto', textAlign: 'left' }, this.revealStyle('contact'));
+    const contactEmailStyle = { fontSize: 22, fontWeight: 700, color: AMBER };
+    const contactAddressStyle = { fontSize: 15.5, color: theme.textMuted, transition: trans };
+
+    const footerStyle = { padding: '40px 56px', borderTop: `1px solid ${theme.border}`, transition: trans };
+    const footerTopStyle = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20, maxWidth: 1080, margin: '0 auto' };
+    const footerLogoBoxStyle = { width: 24, height: 24, borderRadius: 6, backgroundColor: theme.indigo, color: dark ? '#12141B' : '#FAFAFA', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 12, transition: trans };
+    const footerWordmarkStyle = { fontSize: 14.5, fontWeight: 600, color: theme.heading, transition: trans };
+    const footerLinkStyle = { fontSize: 14, color: theme.textMuted, transition: trans };
+    const footerBottomStyle = { fontSize: 13, color: theme.textMuted, textAlign: 'center', marginTop: 28, transition: trans };
+
+    return {
+      wwdRef: this.registerReveal('wwd'),
+      productsRef: this.registerReveal('products'),
+      whyRef: this.registerReveal('why'),
+      contactRef: this.registerReveal('contact'),
+      rootStyle, navStyle, logoBoxStyle, wordmarkStyle, navLinkStyle, navCtaStyle,
+      toggleTheme: this.toggleTheme, toggleTrackStyle, toggleThumbStyle,
+      motifWrapStyle, nodes, lines, heroSectionStyle, heroContentStyle,
+      eyebrowStyle, heroHeadingStyle, heroSubStyle, heroPrimaryBtnStyle, heroSecondaryBtnStyle,
+      sectionEyebrowStyle, sectionHeadingStyle, bodyTextStyle,
+      whatWeDoWrapStyle, whatWeDoInnerStyle,
+      productsWrapStyle, productsInnerStyle, productsGridStyle, productCardStyle, teaserCardStyle,
+      flagshipBadgeStyle, comingSoonBadgeStyle, productTitleStyle, productDescStyle, productLinkStyle,
+      whyWrapStyle, whyInnerStyle, whyGridStyle, whyCardStyle, whyNumStyle, whyTitleStyle, whyDescStyle,
+      contactWrapStyle, contactInnerStyle, contactEmailStyle, contactAddressStyle,
+      footerStyle, footerTopStyle, footerLogoBoxStyle, footerWordmarkStyle, footerLinkStyle, footerBottomStyle
+    };
+  }
+}
+</script>
+</body>
+</html>

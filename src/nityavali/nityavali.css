@@ -1,0 +1,29 @@
+/*
+ * Nityavali landing page — self-contained color system.
+ * Scoped under `.nityavali` so these tokens never leak into (or inherit from)
+ * the parent Knord site's indigo/cobalt + amber theme. This page has a fixed
+ * light palette and intentionally ignores the parent's dark-mode toggle.
+ */
+.nityavali {
+  --n-navy: #0d1b2e; /* headings / text */
+  --n-deep-navy: #0b1524; /* dark panels / footer / CTA band */
+  --n-teal: #14a89c; /* primary actions, primary accent */
+  --n-purple: #6c5dd4; /* secondary accent */
+  --n-amber: #f5a623; /* tertiary accent */
+
+  --n-bg: #ffffff;
+  --n-bg-alt: #f7f8fa;
+
+  --n-text: #0d1b2e;
+  --n-text-muted: rgba(13, 27, 46, 0.66);
+  --n-border: rgba(13, 27, 46, 0.1);
+
+  --n-on-dark: #ffffff;
+  --n-on-dark-muted: rgba(255, 255, 255, 0.68);
+  --n-dark-border: rgba(255, 255, 255, 0.1);
+
+  background-color: var(--n-bg);
+  color: var(--n-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
