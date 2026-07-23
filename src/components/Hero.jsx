@@ -26,8 +26,6 @@ export default function Hero({ dark }) {
         <div className="mt-2 flex flex-wrap justify-center gap-4">
           <a
             href="/nityavali"
-            target="_blank"
-            rel="noopener"
             className="theme-transition rounded-[10px] bg-amber px-[26px] py-[14px] text-[15.5px] font-semibold"
             style={{ color: 'var(--on-accent)' }}
           >

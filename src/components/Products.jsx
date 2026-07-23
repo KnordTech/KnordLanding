@@ -43,8 +43,6 @@ export default function Products() {
             </p>
             <a
               href="/nityavali"
-              target="_blank"
-              rel="noopener"
               className="mt-5 inline-block text-[15px] font-semibold text-amber"
             >
               Visit Nityavali &#8594;
