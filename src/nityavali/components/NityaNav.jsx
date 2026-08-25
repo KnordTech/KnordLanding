@@ -1,4 +1,4 @@
-import NityaLogo from './NityaLogo';
+import KnordLogo from '../../components/KnordLogo.jsx';
 
 const LINKS = [
   { href: '#features', label: 'Features' },
@@ -17,7 +17,7 @@ export default function NityaNav() {
       }}
     >
       <a href="#top" className="flex shrink-0 items-center gap-3">
-        <NityaLogo />
+        <KnordLogo size={34} />
         <span className="flex flex-col leading-none">
           <span
             className="text-[17px] font-extrabold tracking-[0.12em]"
