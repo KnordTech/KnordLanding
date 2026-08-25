@@ -4,6 +4,7 @@ import NityaNav from './components/NityaNav';
 import NityaHero from './components/NityaHero';
 import NityaFeatures from './components/NityaFeatures';
 import NityaModules from './components/NityaModules';
+import NityaFunnel from './components/NityaFunnel';
 import NityaWhy from './components/NityaWhy';
 import NityaCTA from './components/NityaCTA';
 import NityaFooter from './components/NityaFooter';
@@ -22,6 +23,7 @@ export default function NityavaliPage() {
       <NityaHero />
       <NityaFeatures />
       <NityaModules />
+      <NityaFunnel />
       <NityaWhy />
       <NityaCTA />
       <NityaFooter />

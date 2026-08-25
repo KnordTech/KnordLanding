@@ -3,37 +3,37 @@ import RevealSection from '../../components/RevealSection';
 const FEATURES = [
   {
     title: 'CRM & Sales Pipeline',
-    body: 'Capture every lead, track deals through each stage, and never let a follow-up slip. See your whole pipeline and where it is stalling.',
+    body: 'Leads, activities, and a Kanban pipeline — then convert the won deal to a client without switching tools.',
     accent: 'var(--n-teal)',
     icon: 'M3 5.5h18M6 12h12M9 18.5h6', // funnel-ish stack
   },
   {
     title: 'Projects & Tasks',
-    body: 'Plan projects, break them into tasks, assign owners and deadlines. Everyone sees what is due, what is blocked, and what ships next.',
+    body: 'Template-based projects, milestones, and a cross-project Kanban so delivery stays visible from kickoff to go-live.',
     accent: 'var(--n-purple)',
     icon: 'M4 6h16M4 12h10M4 18h13',
   },
   {
     title: 'Resourcing',
-    body: 'Match the right people to the right work. Balance workloads, spot who is over-allocated, and keep billable time where it belongs.',
+    body: 'Allocation planner, utilization, skills, and capacity — match the right people to the right work.',
     accent: 'var(--n-amber)',
     icon: 'M12 12a4 4 0 100-8 4 4 0 000 8zM4 20a8 8 0 0116 0',
   },
   {
     title: 'Smart Assistant',
-    body: 'A built-in assistant that watches the operation — surfacing at-risk renewals, overdue tasks, and budget overruns before they become problems.',
+    body: 'Lead scoring, ticket summarization, and operational nudges — AI-native to the platform, not bolted on afterwards.',
     accent: 'var(--n-purple)',
     icon: 'M12 3v3M12 18v3M3 12h3M18 12h3M6.5 6.5l2 2M15.5 15.5l2 2M17.5 6.5l-2 2M8.5 15.5l-2 2',
   },
   {
     title: 'HR & Attendance',
-    body: 'Track attendance, leave, and team records in the same place your work lives — so capacity planning reflects who is actually available.',
+    body: 'Attendance, leaves, and timesheets in the same system that plans capacity — so the roster matches who is actually available.',
     accent: 'var(--n-teal)',
     icon: 'M12 12a4 4 0 100-8 4 4 0 000 8zM5 21v-1a5 5 0 015-5h4a5 5 0 015 5v1',
   },
   {
     title: 'Support & Renewals',
-    body: 'Manage AMC contracts, renewals, and support tickets end to end. Get ahead of every expiry and turn service into recurring revenue.',
+    body: 'Ticket lifecycle Open → Closed, AMC contracts, and a 90/60/30-day reminder engine so renewals do not slip.',
     accent: 'var(--n-amber)',
     icon: 'M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z',
   },

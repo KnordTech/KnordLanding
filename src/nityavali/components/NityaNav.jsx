@@ -3,6 +3,7 @@ import NityaLogo from './NityaLogo';
 const LINKS = [
   { href: '#features', label: 'Features' },
   { href: '#modules', label: 'Modules' },
+  { href: '#journey', label: 'How it works' },
   { href: '#why', label: 'Why Nityavali' },
 ];
 
@@ -34,7 +35,7 @@ export default function NityaNav() {
       </a>
 
       <div className="flex shrink-0 items-center gap-8">
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-8 lg:flex">
           {LINKS.map((link) => (
             <a
               key={link.href}

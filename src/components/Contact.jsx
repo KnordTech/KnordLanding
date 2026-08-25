@@ -1,5 +1,6 @@
 import RevealSection from './RevealSection';
 import SectionEyebrow from './SectionEyebrow';
+import LeadForm from './LeadForm';
 
 export default function Contact() {
   return (
@@ -15,7 +16,24 @@ export default function Contact() {
         >
           Let&apos;s talk about what you&apos;re building.
         </h2>
-        <div className="mt-2 flex flex-col gap-2.5">
+        <p
+          className="theme-transition mt-4 text-[15.5px] leading-[1.65]"
+          style={{ color: 'var(--text-muted)' }}
+        >
+          Request a demo or send a note — it lands with the Knord team, not a
+          generic inbox bot.
+        </p>
+
+        <div className="mt-8">
+          <LeadForm
+            variant="knord"
+            submitLabel="Get in touch"
+            messageLabel="How can we help?"
+            messagePlaceholder="Request a demo, ask about Nityavali, or tell us what you're building."
+          />
+        </div>
+
+        <div className="mt-8 flex flex-col gap-2.5">
           <a href="mailto:hello@knord.tech" className="text-[22px] font-bold text-amber">
             hello@knord.tech
           </a>

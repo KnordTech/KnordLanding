@@ -30,9 +30,9 @@ export default function NityaHero() {
             className="mt-5 max-w-[500px] text-[16.5px] leading-[1.7]"
             style={{ color: 'var(--n-text-muted)' }}
           >
-            Nityavali brings your leads, projects, people, and renewals into a
-            single operating system — from first enquiry to final invoice, with
-            a smart assistant keeping everything moving.
+            Operations management for professional services and implementation
+            businesses — CRM through delivery, support, and AMC renewals in one
+            system, with an AI-assisted layer keeping work moving.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <a

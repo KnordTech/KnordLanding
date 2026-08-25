@@ -9,6 +9,10 @@ const MODULES = [
   'Resources',
   'HR & Attendance',
   'AMC & Renewals',
+  'Dashboards & Reports',
+  'Product Management',
+  'Admin & Masters',
+  'Integrations',
 ];
 
 export default function NityaModules() {

@@ -1,5 +1,6 @@
 import RevealSection from './RevealSection';
 import SectionEyebrow from './SectionEyebrow';
+import { withUtm } from '../lib/utm.js';
 
 export default function Products() {
   return (
@@ -42,7 +43,13 @@ export default function Products() {
               delivery, handled in one place, end to end.
             </p>
             <a
-              href="/nityavali"
+              href={withUtm('/nityavali', {
+                utm_source: 'knord-site',
+                utm_medium: 'cta',
+                utm_campaign: 'visit-nityavali',
+              })}
+              target="_blank"
+              rel="noopener"
               className="mt-5 inline-block text-[15px] font-semibold text-amber"
             >
               Visit Nityavali &#8594;

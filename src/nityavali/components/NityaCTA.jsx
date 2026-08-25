@@ -1,42 +1,42 @@
 import RevealSection from '../../components/RevealSection';
+import LeadForm from '../../components/LeadForm';
 
 export default function NityaCTA() {
   return (
     <section id="demo" className="px-6 pb-[90px] sm:px-14 sm:pb-[110px]">
       <RevealSection
-        className="mx-auto w-full max-w-[1180px] rounded-2xl px-8 py-16 text-center sm:px-14 sm:py-20"
+        className="mx-auto w-full max-w-[1180px] rounded-2xl px-8 py-16 sm:px-14 sm:py-20"
         style={{ backgroundColor: 'var(--n-deep-navy)' }}
       >
-        <h2
-          className="mx-auto max-w-[640px] text-[28px] font-extrabold leading-[1.2] tracking-[-0.015em] sm:text-[40px]"
-          style={{ color: 'var(--n-on-dark)' }}
-        >
-          See Nityavali running on your business.
-        </h2>
-        <p
-          className="mx-auto mt-4 max-w-[520px] text-[16px] leading-[1.65]"
-          style={{ color: 'var(--n-on-dark-muted)' }}
-        >
-          Book a walkthrough and we'll show you how leads, projects, people, and
-          renewals come together in one place.
-        </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <a
-            href="mailto:hello@knord.tech?subject=Nityavali%20demo%20request"
-            className="rounded-[10px] px-[28px] py-[15px] text-[15.5px] font-semibold"
-            style={{ backgroundColor: 'var(--n-teal)', color: 'var(--n-on-dark)' }}
+        <div className="mx-auto max-w-[640px]">
+          <h2
+            className="text-[28px] font-extrabold leading-[1.2] tracking-[-0.015em] sm:text-[40px]"
+            style={{ color: 'var(--n-on-dark)' }}
           >
-            Request a demo
-          </a>
+            See Nityavali running on your business.
+          </h2>
+          <p
+            className="mt-4 text-[16px] leading-[1.65]"
+            style={{ color: 'var(--n-on-dark-muted)' }}
+          >
+            Request a demo and we&apos;ll show you lead to delivery to renewal in
+            one workspace. Existing customers sign in on their own tenant URL —
+            this form is for a conversation, not a login.
+          </p>
+          <div className="mt-8">
+            <LeadForm
+              variant="nityavali"
+              submitLabel="Request a demo"
+              messageLabel="What would you like to see?"
+              messagePlaceholder="e.g. a demo of Nityavali for a 40-person delivery team."
+            />
+          </div>
           <a
             href="mailto:hello@knord.tech"
-            className="rounded-[10px] px-[28px] py-[14px] text-[15.5px] font-semibold"
-            style={{
-              border: '1.5px solid var(--n-dark-border)',
-              color: 'var(--n-on-dark)',
-            }}
+            className="mt-6 inline-block text-[15px] font-semibold"
+            style={{ color: 'var(--n-on-dark-muted)' }}
           >
-            hello@knord.tech
+            Or email hello@knord.tech
           </a>
         </div>
       </RevealSection>
