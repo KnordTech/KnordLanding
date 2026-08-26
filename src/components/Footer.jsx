@@ -5,7 +5,8 @@ const LINKS = [
   { href: '#products', label: 'Products' },
   { href: '#why-knord', label: 'Why Knord' },
   { href: '#contact', label: 'Contact' },
-  { href: 'mailto:hello@knord.tech', label: 'hello@knord.tech' },
+  { href: '/privacy', label: 'Privacy' },
+  { href: 'mailto:hello@knordtechnologies.com', label: 'hello@knordtechnologies.com' },
 ];
 
 export default function Footer() {

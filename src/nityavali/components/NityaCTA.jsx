@@ -32,11 +32,11 @@ export default function NityaCTA() {
             />
           </div>
           <a
-            href="mailto:hello@knord.tech"
+            href="mailto:hello@knordtechnologies.com"
             className="mt-6 inline-block text-[15px] font-semibold"
             style={{ color: 'var(--n-on-dark-muted)' }}
           >
-            Or email hello@knord.tech
+            Or email hello@knordtechnologies.com
           </a>
         </div>
       </RevealSection>

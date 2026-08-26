@@ -34,8 +34,8 @@ export default function Contact() {
         </div>
 
         <div className="mt-8 flex flex-col gap-2.5">
-          <a href="mailto:hello@knord.tech" className="text-[22px] font-bold text-amber">
-            hello@knord.tech
+          <a href="mailto:hello@knordtechnologies.com" className="text-[22px] font-bold text-amber">
+            hello@knordtechnologies.com
           </a>
           <span
             className="theme-transition text-[15.5px]"

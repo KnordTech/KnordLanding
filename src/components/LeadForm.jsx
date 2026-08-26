@@ -144,6 +144,21 @@ export default function LeadForm({
         >
           {status === 'submitting' ? 'Sending…' : submitLabel}
         </button>
+        <p
+          className="mt-3 text-[12.5px] leading-[1.55]"
+          style={{ color: dark ? 'var(--n-on-dark-muted)' : 'var(--text-muted)' }}
+        >
+          By submitting, you agree we may use your details to respond to this
+          request. See our{' '}
+          <a
+            href="/privacy"
+            className="underline underline-offset-2"
+            style={{ color: dark ? 'var(--n-on-dark)' : 'var(--heading)' }}
+          >
+            Data Privacy Policy
+          </a>
+          .
+        </p>
       </div>
     </form>
   );

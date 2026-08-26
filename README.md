@@ -57,10 +57,10 @@ Single scrolling page, sections in order: Hero → What We Do → Products → W
 
 ### Contact (`#contact`)
 - Padding `120px 56px`, inner max-width 640px, left-aligned. Eyebrow "Contact" / H2 "Let's talk about what you're building."
-- Below: email link `hello@knord.tech` (22px weight 700, amber) and address line "Knord Technologies · India" (15.5px, muted), gap 10 in a column.
+- Below: email link `hello@knordtechnologies.com` (22px weight 700, amber) and address line "Knord Technologies · India" (15.5px, muted), gap 10 in a column.
 
 ### Footer
-- Padding `40px 56px`, top border. Inner row (max-width 1080px, flex, space-between, wraps, gap 20): left = 24×24px indigo logo box + "Knord Technologies" wordmark (14.5px weight 600); right = 5 links (14px, muted) — What we do, Products, Why Knord, Contact, hello@knord.tech.
+- Padding `40px 56px`, top border. Inner row (max-width 1080px, flex, space-between, wraps, gap 20): left = 24×24px indigo logo box + "Knord Technologies" wordmark (14.5px weight 600); right = 5 links (14px, muted) — What we do, Products, Why Knord, Contact, hello@knordtechnologies.com.
 - Bottom center line, margin-top 28, 13px muted: "© 2026 Knord Technologies. All rights reserved."
 
 ## Interactions & Behavior

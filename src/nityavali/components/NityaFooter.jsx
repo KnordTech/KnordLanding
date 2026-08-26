@@ -17,13 +17,22 @@ export default function NityaFooter() {
           </span>
         </div>
 
-        <a
-          href="/"
-          className="text-[14.5px] font-semibold"
-          style={{ color: 'var(--n-teal)' }}
-        >
-          &#8592; Back to Knord Technologies
-        </a>
+        <div className="flex flex-wrap items-center gap-6">
+          <a
+            href="/privacy"
+            className="text-[14.5px] font-medium"
+            style={{ color: 'var(--n-text-muted)' }}
+          >
+            Privacy
+          </a>
+          <a
+            href="/"
+            className="text-[14.5px] font-semibold"
+            style={{ color: 'var(--n-teal)' }}
+          >
+            &#8592; Back to Knord Technologies
+          </a>
+        </div>
       </div>
 
       <div
