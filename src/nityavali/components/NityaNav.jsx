@@ -17,7 +17,7 @@ export default function NityaNav() {
       }}
     >
       <a href="#top" className="flex shrink-0 items-center gap-3">
-        <KnordLogo size={34} />
+        <KnordLogo size={40} />
         <span className="flex flex-col leading-none">
           <span
             className="text-[17px] font-extrabold tracking-[0.12em]"

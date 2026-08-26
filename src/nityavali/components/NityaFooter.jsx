@@ -8,7 +8,7 @@ export default function NityaFooter() {
     >
       <div className="mx-auto flex max-w-[1180px] flex-wrap items-center justify-between gap-6">
         <div className="flex items-center gap-3">
-          <KnordLogo size={30} />
+          <KnordLogo size={32} />
           <span
             className="text-[15px] font-bold tracking-[0.1em]"
             style={{ color: 'var(--n-navy)' }}

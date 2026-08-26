@@ -1,3 +1,5 @@
+import KnordLogo from './KnordLogo.jsx';
+
 const LINKS = [
   { href: '#what-we-do', label: 'What we do' },
   { href: '#products', label: 'Products' },
@@ -15,12 +17,7 @@ export default function Nav({ dark, onToggleTheme }) {
       }}
     >
       <div className="flex shrink-0 items-center gap-3">
-        <div
-          className="theme-transition flex h-8 w-8 items-center justify-center rounded-lg text-[15px] font-extrabold"
-          style={{ backgroundColor: 'var(--indigo)', color: 'var(--logo-fg)' }}
-        >
-          K
-        </div>
+        <KnordLogo size={36} />
         <span
           className="theme-transition text-[17px] font-bold tracking-[-0.01em]"
           style={{ color: 'var(--heading)' }}

@@ -1,3 +1,5 @@
+import KnordLogo from './KnordLogo.jsx';
+
 const LINKS = [
   { href: '#what-we-do', label: 'What we do' },
   { href: '#products', label: 'Products' },
@@ -14,12 +16,7 @@ export default function Footer() {
     >
       <div className="mx-auto flex max-w-[1080px] flex-wrap items-center justify-between gap-5">
         <div className="flex items-center gap-2.5">
-          <div
-            className="theme-transition flex h-6 w-6 items-center justify-center rounded-md text-xs font-extrabold"
-            style={{ backgroundColor: 'var(--indigo)', color: 'var(--logo-fg)' }}
-          >
-            K
-          </div>
+          <KnordLogo size={28} />
           <span
             className="theme-transition text-[14.5px] font-semibold"
             style={{ color: 'var(--heading)' }}
