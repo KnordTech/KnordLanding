@@ -6,11 +6,13 @@ import { Check } from './Hero.jsx';
 const PLANS = [
   {
     name: 'Starter',
+    band: 'bg-sky',
     for: 'Small teams moving off spreadsheets',
     features: ['Leads, pipeline and clients', 'Projects and tasks', 'Support tickets', 'Email support'],
   },
   {
     name: 'Growth',
+    band: 'bg-[linear-gradient(90deg,var(--color-sky),var(--color-violet),var(--color-amber),var(--color-coral),var(--color-brand-600))]',
     for: 'Growing teams that sell, deliver and renew',
     featured: true,
     features: [
@@ -24,6 +26,7 @@ const PLANS = [
   },
   {
     name: 'Enterprise',
+    band: 'bg-ink',
     for: 'Larger organisations with their own processes',
     features: [
       'Everything in Growth',
@@ -53,12 +56,13 @@ export default function Plans() {
               viewport={{ once: true, margin: '0px 0px -12% 0px' }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 }}
               whileHover={{ y: -4 }}
-              className={`relative flex flex-col rounded-[20px] border p-7 ${
+              className={`relative flex flex-col overflow-hidden rounded-[20px] border p-7 pt-9 ${
                 p.featured ? 'border-ink bg-ink text-on-ink shadow-[0_30px_60px_-30px_rgba(28,25,23,0.55)]' : 'border-line bg-paper'
               }`}
             >
+              <span aria-hidden="true" className={`absolute inset-x-0 top-0 h-2 ${p.band}`} />
               {p.featured ? (
-                <span className="absolute right-5 top-5 rounded-full bg-brand-600 px-2.5 py-0.5 font-mono text-[11px] text-on-ink">Most teams</span>
+                <span className="absolute right-5 top-7 rounded-full bg-brand-600 px-2.5 py-0.5 font-mono text-[11px] text-on-ink">Most teams</span>
               ) : null}
               <h3 className="text-[22px] font-bold tracking-[-0.02em]">{p.name}</h3>
               <p className={`mt-1 text-[14.5px] ${p.featured ? 'text-on-ink/60' : 'text-muted'}`}>{p.for}</p>

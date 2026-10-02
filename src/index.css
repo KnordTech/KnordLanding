@@ -36,6 +36,27 @@
   --color-spark: #e8771a;
   --color-spark-50: #fdf1e6;
 
+  /* One colour per area of the product; each always means the same thing. */
+  --color-sky: #1d5fb8;
+  --color-sky-bg: #e6f0fb;
+  --color-sky-deep: #123e78;
+  --color-violet: #6941c6;
+  --color-violet-bg: #efeafb;
+  --color-violet-deep: #42307d;
+  --color-amber: #b25e09;
+  --color-amber-bg: #fdf1da;
+  --color-amber-deep: #7a3e06;
+  --color-coral: #c4402f;
+  --color-coral-bg: #fde8e3;
+  --color-coral-deep: #85271b;
+  --color-teal-bg: #e4f3f0;
+  --color-teal-deep: #0b4f48;
+  --color-lime: #4d7c0f;
+  --color-lime-bg: #edf5dc;
+  --color-lime-deep: #345409;
+
+  --font-hand: "Caveat", "Segoe Print", cursive;
+
   --color-warn: #b45309;
   --color-warn-bg: #fef3c7;
   --color-bad: #b42318;

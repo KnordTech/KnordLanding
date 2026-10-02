@@ -28,7 +28,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 gap-7 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div className="col-span-2 md:col-span-1">
             <a href="/#top" aria-label="Knord Technologies home">
-              <Logo tagline="" />
+              <Logo product={false} />
             </a>
             <p className="mt-3 max-w-[34ch]">Operational software, built in India for teams everywhere.</p>
           </div>

@@ -2,11 +2,18 @@ import { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import Reveal, { SectionHead } from '../site/Reveal.jsx';
 
+const ICONS = {
+  lock: <><rect x="4" y="9" width="12" height="8" rx="2" fill="currentColor" /><path d="M7 9 V6.5 A3 3 0 0 1 13 6.5 V9" fill="none" stroke="currentColor" strokeWidth="2" /></>,
+  person: <><circle cx="10" cy="7" r="3" fill="currentColor" /><path d="M4 17 C4 13 7 11 10 11 C13 11 16 13 16 17 Z" fill="currentColor" /></>,
+  pin: <><path d="M10 2 C14 2 16 5 16 8 C16 12 10 18 10 18 C10 18 4 12 4 8 C4 5 6 2 10 2 Z" fill="currentColor" /><circle cx="10" cy="8" r="2.2" fill="#fff" /></>,
+  history: <><path d="M10 3 A7 7 0 1 1 3 10" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" /><path d="M3 5 V10 H8" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></>,
+};
+
 const POINTS = [
-  { title: 'A private workspace per company', body: 'Your data lives in your own workspace. Nobody outside your company can see it.' },
-  { title: 'Access down to each action', body: 'Roles decide who can view, add, edit or delete, module by module.' },
-  { title: 'Hosted in India', body: 'Runs on AWS in Mumbai, so your data stays in the country.' },
-  { title: 'Backups and an audit trail', body: 'The database is backed up before every update, and changes are logged with who made them.' },
+  { title: 'A private workspace per company', body: 'Your data lives in your own workspace. Nobody outside your company can see it.', icon: 'lock', tone: 'bg-sky-bg text-sky' },
+  { title: 'Access down to each action', body: 'Roles decide who can view, add, edit or delete, module by module.', icon: 'person', tone: 'bg-violet-bg text-violet' },
+  { title: 'Hosted in India', body: 'Runs on AWS in Mumbai, so your data stays in the country.', icon: 'pin', tone: 'bg-amber-bg text-amber' },
+  { title: 'Backups and an audit trail', body: 'The database is backed up before every update, and changes are logged with who made them.', icon: 'history', tone: 'bg-teal-bg text-brand-600' },
 ];
 
 // Example brands for the sign-in preview (fictional companies).
@@ -90,15 +97,15 @@ export default function Security() {
           <div className="mt-9 grid gap-x-6 gap-y-5 sm:grid-cols-2">
             {POINTS.map((p, i) => (
               <Reveal key={p.title} delay={i * 0.08} className="grid gap-1">
-                <h3 className="flex items-center gap-2 text-[16px] font-semibold tracking-[-0.01em]">
-                  <span className="grid h-6 w-6 place-items-center rounded-md bg-brand-50 text-brand-600">
-                    <svg width="12" height="12" viewBox="0 0 16 16" aria-hidden="true">
-                      <path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <h3 className="flex items-center gap-3 text-[16px] font-semibold tracking-[-0.01em]">
+                  <span className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl ${p.tone}`}>
+                    <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+                      {ICONS[p.icon]}
                     </svg>
                   </span>
                   {p.title}
                 </h3>
-                <p className="text-[14.5px] leading-[1.55] text-muted">{p.body}</p>
+                <p className="pl-[52px] text-[14.5px] leading-[1.55] text-muted">{p.body}</p>
               </Reveal>
             ))}
           </div>

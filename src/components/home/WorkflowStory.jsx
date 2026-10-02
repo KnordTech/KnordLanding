@@ -3,28 +3,42 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring } fr
 import { SectionHead } from '../site/Reveal.jsx';
 import { PANELS } from './StoryPanels.jsx';
 
+// Stage colours follow the area colours: sales = sky, delivery = violet, support = coral,
+// renewals = teal.
+const TONES = {
+  sky: { tint: '#E6F0FB', fg: '#1D5FB8', text: 'text-sky' },
+  violet: { tint: '#EFEAFB', fg: '#6941C6', text: 'text-violet' },
+  coral: { tint: '#FDE8E3', fg: '#C4402F', text: 'text-coral' },
+  teal: { tint: '#E4F3F0', fg: '#0F7B6F', text: 'text-brand-600' },
+};
+
 const STEPS = [
   {
+    tone: TONES.sky,
     stage: 'Lead',
     title: 'Capture every enquiry, wherever it starts.',
     body: 'Leads arrive from Meta lead ads, your website or a spreadsheet import. Each gets an owner, a score and a follow-up date.',
   },
   {
+    tone: TONES.sky,
     stage: 'Deal',
     title: 'Move deals forward and convert in one click.',
     body: 'Drag deals across your own pipeline stages. When one is won, it becomes a client with its history attached.',
   },
   {
+    tone: TONES.violet,
     stage: 'Delivery',
     title: 'Start projects from templates, not blank pages.',
     body: 'A project template creates the milestones and tasks for you. Allocate people by skill and watch progress roll up.',
   },
   {
+    tone: TONES.coral,
     stage: 'Support',
     title: 'Keep support tied to the client and contract.',
     body: 'Tickets move from Open to Closed with an owner and a priority, and every one is linked to the client it belongs to.',
   },
   {
+    tone: TONES.teal,
     stage: 'Renewal',
     title: 'Never miss a renewal again.',
     body: 'AMC contracts send reminders at 90, 60 and 30 days. Renew with one click and the new term starts where the old one ended.',
@@ -44,6 +58,7 @@ export default function WorkflowStory() {
   });
 
   const Panel = PANELS[step];
+  const tone = STEPS[step].tone;
 
   return (
     <section id="workflow" className="px-[clamp(16px,4vw,40px)] pt-[clamp(72px,10vw,128px)]">
@@ -61,7 +76,12 @@ export default function WorkflowStory() {
             {/* Stage list */}
             <div className="relative order-2 pl-8 md:order-1">
               <div className="absolute bottom-2 left-[7px] top-2 w-0.5 rounded bg-line">
-                <motion.div className="h-full w-full origin-top rounded bg-brand-600" style={{ scaleY: rail }} />
+                <motion.div
+                  className="h-full w-full origin-top rounded"
+                  style={{ scaleY: rail }}
+                  animate={{ backgroundColor: tone.fg }}
+                  transition={{ duration: 0.5 }}
+                />
               </div>
               <ol className="grid gap-1">
                 {STEPS.map((s, i) => {
@@ -69,12 +89,18 @@ export default function WorkflowStory() {
                   return (
                     <li key={s.stage} className={`relative ${on ? '' : 'max-md:hidden'}`}>
                       <span
-                        className={`absolute -left-8 top-[7px] h-4 w-4 rounded-full border-2 transition-all duration-500 ${
-                          i <= step ? 'border-brand-600 bg-brand-600 shadow-[0_0_0_5px_var(--color-brand-100)]' : 'border-line bg-canvas'
-                        }`}
+                        className="absolute -left-8 top-[19px] h-4 w-4 rounded-full border-2 transition-all duration-500"
+                        style={
+                          i <= step
+                            ? { borderColor: s.tone.fg, background: s.tone.fg, boxShadow: `0 0 0 5px ${s.tone.tint}` }
+                            : { borderColor: 'var(--color-line)', background: 'var(--color-canvas)' }
+                        }
                       />
-                      <div className={`transition-opacity duration-500 ${on ? 'opacity-100' : 'opacity-40'}`}>
-                        <span className="font-mono text-[12px] tracking-[0.04em] text-brand-600">
+                      <div
+                        className={`rounded-2xl px-4 py-3 transition-all duration-500 ${on ? 'opacity-100' : 'opacity-45'}`}
+                        style={{ background: on ? s.tone.tint : 'transparent' }}
+                      >
+                        <span className={`font-mono text-[12px] tracking-[0.04em] ${s.tone.text}`}>
                           Stage {i + 1} · {s.stage}
                         </span>
                         <h3 className={`font-bold tracking-[-0.02em] transition-all duration-500 ${on ? 'text-[clamp(22px,2.6vw,30px)] leading-[1.15]' : 'text-[17px] leading-snug'}`}>
@@ -101,7 +127,12 @@ export default function WorkflowStory() {
             </div>
 
             {/* Product panel */}
-            <div className="relative order-1 h-[clamp(340px,52vh,500px)] md:order-2">
+            <motion.div
+              className="relative order-1 rounded-[26px] p-[clamp(10px,2vw,26px)] md:order-2"
+              animate={{ backgroundColor: tone.tint }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="relative h-[clamp(320px,48vh,470px)]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={step}
@@ -115,7 +146,8 @@ export default function WorkflowStory() {
                   <Panel />
                 </motion.div>
               </AnimatePresence>
-            </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
+import { useReducedMotion } from 'motion/react';
 import CountUp from '../site/CountUp.jsx';
-import NityavaliMark from '../site/NityavaliMark.jsx';
+import { NityavaliMark } from '../site/Marks.jsx';
 
 // A coded, animated stand-in for the Nityavali dashboard. All figures are examples.
+// Each tile wears its area's colour (sales = sky, projects = violet, people = amber, renewals = teal).
 const STATS = [
-  { label: 'Open pipeline', prefix: '₹', to: 4.2, decimals: 1, suffix: 'Cr', note: '+18% MoM' },
-  { label: 'Active projects', to: 37, note: '5 go-live' },
-  { label: 'Utilisation', to: 86, suffix: '%', note: '+4 pts' },
-  { label: 'Renewals due', to: 12, note: 'next 30 days', warn: true },
+  { label: 'Open pipeline', prefix: '₹', to: 4.2, decimals: 1, suffix: 'Cr', note: '+18% MoM', tone: 'bg-sky-bg text-sky', value: 'text-sky-deep' },
+  { label: 'Active projects', to: 37, note: '5 go-live', tone: 'bg-violet-bg text-violet', value: 'text-violet-deep' },
+  { label: 'Utilisation', to: 86, suffix: '%', note: '+4 pts', tone: 'bg-amber-bg text-amber', value: 'text-amber-deep' },
+  { label: 'Renewals due', to: 12, note: 'next 30 days', tone: 'bg-teal-bg text-brand-600', value: 'text-teal-deep' },
 ];
 
 const ASSISTANT_LINES = [
@@ -52,13 +53,8 @@ function TypingLine() {
 
 export default function ProductWindow() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30, rotateY: -14, rotateX: 6 }}
-      animate={{ opacity: 1, y: 0, rotateY: -6, rotateX: 3 }}
-      whileHover={{ rotateY: -2, rotateX: 1 }}
-      transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
-      style={{ transformPerspective: 1600, transformOrigin: 'left center' }}
-      className="overflow-hidden rounded-2xl border border-line bg-paper shadow-[0_40px_80px_-40px_rgba(28,25,23,0.35),0_18px_36px_-24px_rgba(28,25,23,0.2)] max-lg:transform-none!"
+    <div
+      className="overflow-hidden rounded-2xl border border-line bg-paper shadow-[0_40px_80px_-40px_rgba(28,25,23,0.35),0_18px_36px_-24px_rgba(28,25,23,0.2)]"
       aria-label="Preview of the Nityavali dashboard"
     >
       <div className="flex items-center gap-2 border-b border-line bg-canvas px-3.5 py-2.5">
@@ -100,14 +96,14 @@ export default function ProductWindow() {
 
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
             {STATS.map((s) => (
-              <div key={s.label} className="min-w-0 rounded-[10px] border border-line bg-paper p-2.5">
-                <div className="truncate text-[10.5px] text-muted">{s.label}</div>
-                <div className="mt-0.5 text-[19px] font-bold tracking-[-0.02em] tabular-nums">
+              <div key={s.label} className={`min-w-0 rounded-[10px] p-2.5 ${s.tone}`}>
+                <div className="truncate text-[10.5px]">{s.label}</div>
+                <div className={`mt-0.5 text-[19px] font-bold tracking-[-0.02em] tabular-nums ${s.value}`}>
                   {s.prefix}
                   <CountUp to={s.to} decimals={s.decimals || 0} delay={0.7} />
                   {s.suffix}
                 </div>
-                <div className={`font-mono text-[10.5px] ${s.warn ? 'text-warn' : 'text-brand-600'}`}>{s.note}</div>
+                <div className="font-mono text-[10.5px] opacity-80">{s.note}</div>
               </div>
             ))}
           </div>
@@ -168,6 +164,6 @@ export default function ProductWindow() {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

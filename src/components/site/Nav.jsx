@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import Logo from './Logo.jsx';
-import NityavaliMark from './NityavaliMark.jsx';
+import { NityavaliMark, NextProductMark } from './Marks.jsx';
 
 const LINKS = [
   { href: '#workflow', label: 'Workflow' },
@@ -99,7 +99,7 @@ export default function Nav() {
                     </span>
                   </a>
                   <a href="#knord" onClick={() => setProductsOpen(false)} className="grid grid-cols-[36px_1fr] items-center gap-3 rounded-xl p-2.5 hover:bg-canvas">
-                    <span className="grid h-9 w-9 place-items-center rounded-[10px] border border-dashed border-line-strong text-muted">+</span>
+                    <NextProductMark size={36} />
                     <span>
                       <span className="flex items-center gap-2 text-[14.5px] font-semibold">
                         Next product <span className="chip plain">Coming soon</span>

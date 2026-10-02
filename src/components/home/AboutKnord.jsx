@@ -1,5 +1,5 @@
-import Reveal from '../site/Reveal.jsx';
-import { Eyebrow } from '../site/Reveal.jsx';
+import Reveal, { Eyebrow } from '../site/Reveal.jsx';
+import { KnordMark, NextProductMark } from '../site/Marks.jsx';
 
 const PRINCIPLES = [
   ['Rooted in real work', 'Nityavali was built alongside a live operations team, one release at a time.'],
@@ -13,7 +13,10 @@ export default function AboutKnord() {
     <section id="knord" className="px-[clamp(16px,4vw,40px)] pb-[clamp(72px,10vw,128px)]">
       <div className="mx-auto grid max-w-[1180px] gap-4 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
         <Reveal className="rounded-[22px] border border-line bg-paper p-[clamp(24px,4vw,44px)]">
-          <Eyebrow className="text-knord">Built by Knord Technologies</Eyebrow>
+          <div className="flex items-center gap-3">
+            <KnordMark size={34} />
+            <Eyebrow className="text-knord">Built by Knord Technologies</Eyebrow>
+          </div>
           <h2 className="mt-4 max-w-[22ch] text-[clamp(26px,3.2vw,36px)] font-bold leading-[1.12] tracking-[-0.025em]">
             We build software for the businesses that keep things running.
           </h2>
@@ -34,14 +37,17 @@ export default function AboutKnord() {
         <Reveal delay={0.1} className="relative grid content-between gap-6 overflow-hidden rounded-[22px] bg-ink p-[clamp(24px,4vw,44px)] text-on-ink">
           <div
             aria-hidden="true"
-            className="glow-drift pointer-events-none absolute -right-24 -top-24 h-[320px] w-[320px] rounded-full bg-[radial-gradient(closest-side,rgba(35,71,201,0.55),transparent)]"
+            className="glow-drift pointer-events-none absolute -right-24 -top-24 h-[320px] w-[320px] rounded-full bg-[radial-gradient(closest-side,rgba(139,108,240,0.5),transparent)]"
           />
           <div
             aria-hidden="true"
             className="glow-drift pointer-events-none absolute -bottom-28 -left-20 h-[280px] w-[280px] rounded-full bg-[radial-gradient(closest-side,rgba(232,119,26,0.35),transparent)] [animation-duration:22s]"
           />
           <div className="relative">
-            <span className="rounded-full border border-on-ink/15 px-2.5 py-1 font-mono text-[11px] text-on-ink/70">Coming soon</span>
+            <div className="flex items-center gap-3">
+              <NextProductMark size={40} />
+              <span className="rounded-full border border-on-ink/15 px-2.5 py-1 font-mono text-[11px] text-on-ink/70">Coming soon</span>
+            </div>
             <h3 className="mt-5 text-[clamp(22px,2.6vw,28px)] font-bold leading-[1.15] tracking-[-0.02em]">
               We&apos;re already building what&apos;s next.
             </h3>

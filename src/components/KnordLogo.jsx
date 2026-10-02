@@ -1,6 +1,6 @@
-import Logo from './site/Logo.jsx';
+import { KnordMark } from './site/Marks.jsx';
 
-// Kept for the privacy page; the mark itself lives in site/Logo.jsx.
+// Kept for the privacy page.
 export default function KnordLogo({ size = 36 }) {
-  return <Logo size={size} withName={false} />;
+  return <KnordMark size={size} />;
 }

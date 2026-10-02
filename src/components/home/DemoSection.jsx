@@ -16,6 +16,11 @@ export default function DemoSection() {
             A 30-minute walkthrough with your own pipeline and projects in mind. Tell us a little about your team and
             we&apos;ll set it up.
           </p>
+          <div className="mt-6 flex flex-wrap gap-2.5" aria-hidden="true">
+            <span className="-rotate-3 rounded-xl bg-sky-bg px-3 py-2 text-[13px] font-semibold text-sky">New lead ↘</span>
+            <span className="rotate-2 rounded-xl bg-teal-bg px-3 py-2 text-[13px] font-semibold text-brand-600">Renewed ✓</span>
+            <span className="-rotate-1 rounded-xl bg-coral-bg px-3 py-2 text-[13px] font-semibold text-coral">Resolved in 4h</span>
+          </div>
           <div className="mt-8 grid gap-4">
             <button
               type="button"
