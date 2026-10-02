@@ -7,6 +7,7 @@ import IndustryStrip from './components/home/IndustryStrip.jsx';
 import WorkflowStory from './components/home/WorkflowStory.jsx';
 import Modules from './components/home/Modules.jsx';
 import Industries from './components/home/Industries.jsx';
+import Integrations from './components/home/Integrations.jsx';
 import Security from './components/home/Security.jsx';
 import Rollout from './components/home/Rollout.jsx';
 import Plans from './components/home/Plans.jsx';
@@ -25,6 +26,7 @@ export default function App() {
         <IndustryStrip />
         <WorkflowStory />
         <Modules />
+        <Integrations />
         <Industries />
         <Security />
         <Rollout />
