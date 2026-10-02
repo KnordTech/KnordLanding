@@ -19,7 +19,6 @@ const EMPTY = {
 };
 
 export default function LeadForm({
-  variant = 'knord',
   submitLabel = 'Send',
   messageLabel = 'How can we help?',
   messagePlaceholder = 'Tell us about your team and what you need.',
@@ -27,27 +26,6 @@ export default function LeadForm({
   const [fields, setFields] = useState(EMPTY);
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState('');
-  const dark = variant === 'nityavali';
-
-  const inputStyle = dark
-    ? {
-        backgroundColor: 'rgba(255, 255, 255, 0.06)',
-        borderColor: 'var(--n-dark-border)',
-        color: 'var(--n-on-dark)',
-      }
-    : {
-        backgroundColor: 'var(--card-bg)',
-        borderColor: 'var(--card-border)',
-        color: 'var(--heading)',
-      };
-
-  const labelStyle = {
-    color: dark ? 'var(--n-on-dark-muted)' : 'var(--text-muted)',
-  };
-
-  const buttonStyle = dark
-    ? { backgroundColor: 'var(--n-teal)', color: 'var(--n-on-dark)' }
-    : { color: 'var(--on-accent)' };
 
   function onChange(event) {
     const { name, value } = event.target;
@@ -82,22 +60,20 @@ export default function LeadForm({
 
   if (status === 'success') {
     return (
-      <p
-        className="text-[16.5px] leading-[1.65]"
-        style={{ color: dark ? 'var(--n-on-dark)' : 'var(--heading)' }}
-        role="status"
-      >
-        Thanks — we received your request and will be in touch. No login needed
-        unless you already use Nityavali.
+      <p className="rounded-xl border border-on-ink/15 bg-on-ink/5 p-5 text-[16px] leading-[1.6] text-on-ink" role="status">
+        Thanks, we received your request and will be in touch shortly.
       </p>
     );
   }
 
+  const inputClass =
+    'w-full rounded-[10px] border border-on-ink/15 bg-on-ink/[0.06] px-3 py-[11px] text-[15px] text-on-ink outline-none transition-colors placeholder:text-on-ink/35 focus:border-brand-300 focus:bg-on-ink/[0.09]';
+
   return (
-    <form onSubmit={onSubmit} className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <form onSubmit={onSubmit} className="grid grid-cols-1 gap-3 sm:grid-cols-2">
       {FIELDS.map((field) => (
-        <label key={field.name} className="flex flex-col gap-1.5 text-left">
-          <span className="text-[13px] font-semibold" style={labelStyle}>
+        <label key={field.name} className="flex flex-col gap-1.5 text-[13px] text-on-ink/60">
+          <span>
             {field.label}
             {field.optional ? ' (optional)' : ''}
           </span>
@@ -108,29 +84,25 @@ export default function LeadForm({
             required={Boolean(field.required)}
             value={fields[field.name]}
             onChange={onChange}
-            className="theme-transition rounded-[10px] border px-3.5 py-3 text-[15px] outline-none placeholder:opacity-50"
-            style={inputStyle}
+            className={inputClass}
           />
         </label>
       ))}
 
-      <label className="flex flex-col gap-1.5 text-left sm:col-span-2">
-        <span className="text-[13px] font-semibold" style={labelStyle}>
-          {messageLabel}
-        </span>
+      <label className="flex flex-col gap-1.5 text-[13px] text-on-ink/60 sm:col-span-2">
+        <span>{messageLabel}</span>
         <textarea
           name="message"
-          rows={4}
+          rows={3}
           value={fields.message}
           onChange={onChange}
           placeholder={messagePlaceholder}
-          className="theme-transition resize-y rounded-[10px] border px-3.5 py-3 text-[15px] outline-none placeholder:opacity-50"
-          style={inputStyle}
+          className={`${inputClass} resize-y`}
         />
       </label>
 
       {error ? (
-        <p className="text-[14px] font-medium sm:col-span-2" style={{ color: dark ? 'var(--n-amber)' : '#c2410c' }} role="alert">
+        <p className="text-[14px] font-medium text-[#F5B26B] sm:col-span-2" role="alert">
           {error}
         </p>
       ) : null}
@@ -139,22 +111,13 @@ export default function LeadForm({
         <button
           type="submit"
           disabled={status === 'submitting'}
-          className={`rounded-[10px] px-[26px] py-[14px] text-[15.5px] font-semibold disabled:opacity-70 ${dark ? '' : 'bg-amber'}`}
-          style={buttonStyle}
+          className="w-full rounded-[10px] bg-brand-600 px-6 py-3.5 text-[15.5px] font-semibold text-on-ink transition hover:bg-brand-700 disabled:opacity-70 sm:w-auto"
         >
           {status === 'submitting' ? 'Sending…' : submitLabel}
         </button>
-        <p
-          className="mt-3 text-[12.5px] leading-[1.55]"
-          style={{ color: dark ? 'var(--n-on-dark-muted)' : 'var(--text-muted)' }}
-        >
-          By submitting, you agree we may use your details to respond to this
-          request. See our{' '}
-          <a
-            href="/privacy"
-            className="underline underline-offset-2"
-            style={{ color: dark ? 'var(--n-on-dark)' : 'var(--heading)' }}
-          >
+        <p className="mt-3 text-[12.5px] leading-[1.55] text-on-ink/55">
+          By submitting, you agree we may use your details to respond to this request. See our{' '}
+          <a href="/privacy" className="text-on-ink underline underline-offset-2">
             Data Privacy Policy
           </a>
           .

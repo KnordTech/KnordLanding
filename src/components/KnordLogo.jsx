@@ -1,14 +1,6 @@
-export default function KnordLogo({ size = 36, className = '' }) {
-  return (
-    <img
-      src="/knord-logo.jpg"
-      alt=""
-      width={Math.round(size * 1.43)}
-      height={size}
-      className={`shrink-0 object-contain ${className}`}
-      style={{ height: size, width: 'auto' }}
-      aria-hidden="true"
-      decoding="async"
-    />
-  );
+import Logo from './site/Logo.jsx';
+
+// Kept for the privacy page; the mark itself lives in site/Logo.jsx.
+export default function KnordLogo({ size = 36 }) {
+  return <Logo size={size} withName={false} />;
 }

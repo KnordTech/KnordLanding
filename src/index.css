@@ -1,40 +1,61 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
+@import "./styles/mock.css";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
+/*
+ * v2.0 look — shared with the Nityavali app: warm off-white canvas, near-black anchors,
+ * Geist. Knord takes the cobalt from its logo; each product keeps its own accent
+ * (Nityavali = teal). Light only.
+ */
 @theme {
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --color-amber: #ff6b4a;
+  --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --color-canvas: #faf9f6;
+  --color-paper: #ffffff;
+  --color-sunk: #f3f1ec;
+  --color-ink: #1c1917;
+  --color-ink-2: #292524;
+  --color-ink-3: #44403c;
+  --color-muted: #78716c;
+  --color-line: #e7e5e4;
+  --color-line-strong: #d6d3d1;
+  --color-on-ink: #faf9f6;
+
+  --color-brand-50: #eef8f6;
+  --color-brand-100: #e4f3f0;
+  --color-brand-200: #bfe3dc;
+  --color-brand-300: #8fd0c4;
+  --color-brand-500: #1e9484;
+  --color-brand-600: #0f7b6f;
+  --color-brand-700: #0b5f56;
+
+  --color-knord: #2347c9;
+  --color-knord-50: #eef2fd;
+  --color-knord-300: #9db1f2;
+  --color-spark: #e8771a;
+  --color-spark-50: #fdf1e6;
+
+  --color-warn: #b45309;
+  --color-warn-bg: #fef3c7;
+  --color-bad: #b42318;
+  --color-bad-bg: #fee4e2;
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 :root {
-  --bg: #fafafa;
-  --bg-alt: #f3f2f5;
-  --text: #1e2a4a;
-  --text-muted: rgba(43, 58, 103, 0.66);
-  --heading: #1e2a4a;
-  --indigo: #2e5ce0;
-  --card-bg: #ffffff;
-  --card-border: rgba(43, 58, 103, 0.1);
-  --border: rgba(43, 58, 103, 0.1);
-  --nav-bg: rgba(250, 250, 250, 0.85);
-  --on-accent: #ffffff;
-  --logo-fg: #fafafa;
-}
-
-.dark {
-  --bg: #12141b;
-  --bg-alt: #171a24;
-  --text: #f2f1ec;
-  --text-muted: rgba(242, 241, 236, 0.68);
-  --heading: #f2f1ec;
-  --indigo: #9fb0ea;
-  --card-bg: #1a1d28;
-  --card-border: rgba(242, 241, 236, 0.1);
-  --border: rgba(242, 241, 236, 0.1);
-  --nav-bg: rgba(18, 20, 27, 0.85);
-  --on-accent: #12141b;
-  --logo-fg: #12141b;
+  color-scheme: light;
+  /* Older names still used by the privacy page. */
+  --bg: var(--color-canvas);
+  --text: var(--color-ink);
+  --heading: var(--color-ink);
+  --text-muted: var(--color-muted);
+  --indigo: var(--color-knord);
+  --border: var(--color-line);
+  --card-bg: var(--color-paper);
+  --card-border: var(--color-line);
+  --nav-bg: rgb(250 249 246 / 0.86);
 }
 
 * {
@@ -43,50 +64,20 @@
 
 body {
   margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
-@keyframes nodeFloat {
-  0% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(6px, -10px);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
+h1,
+h2,
+h3 {
+  text-wrap: balance;
 }
 
-@keyframes nodeFloatSlow {
-  0% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(-8px, 8px);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
-.theme-transition {
-  transition:
-    background-color 0.6s ease,
-    color 0.6s ease,
-    border-color 0.6s ease;
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition:
-    opacity 0.8s ease,
-    transform 0.8s ease;
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+:focus-visible {
+  outline: 2px solid var(--color-brand-600);
+  outline-offset: 3px;
+  border-radius: 6px;
 }

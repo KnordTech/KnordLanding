@@ -1,27 +1,38 @@
-import useTheme from './hooks/useTheme';
-import Nav from './components/Nav';
-import Hero from './components/Hero';
-import WhatWeDo from './components/WhatWeDo';
-import Products from './components/Products';
-import WhyKnord from './components/WhyKnord';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import SmoothScroll from './components/site/SmoothScroll.jsx';
+import Nav from './components/site/Nav.jsx';
+import Footer from './components/site/Footer.jsx';
+import WhatsAppButton from './components/site/WhatsAppButton.jsx';
+import Hero from './components/home/Hero.jsx';
+import IndustryStrip from './components/home/IndustryStrip.jsx';
+import WorkflowStory from './components/home/WorkflowStory.jsx';
+import Modules from './components/home/Modules.jsx';
+import Security from './components/home/Security.jsx';
+import Rollout from './components/home/Rollout.jsx';
+import Plans from './components/home/Plans.jsx';
+import Faq from './components/home/Faq.jsx';
+import AboutKnord from './components/home/AboutKnord.jsx';
+import DemoSection from './components/home/DemoSection.jsx';
 
+// v2.0 home: Nityavali-led, with Knord as the company behind it.
 export default function App() {
-  const [dark, toggleTheme] = useTheme();
-
   return (
-    <div
-      className="theme-transition min-h-screen overflow-x-hidden"
-      style={{ backgroundColor: 'var(--bg)', color: 'var(--text)' }}
-    >
-      <Nav dark={dark} onToggleTheme={toggleTheme} />
-      <Hero dark={dark} />
-      <WhatWeDo />
-      <Products />
-      <WhyKnord />
-      <Contact />
+    <div className="min-h-screen overflow-x-clip bg-canvas text-ink">
+      <SmoothScroll />
+      <Nav />
+      <main id="top">
+        <Hero />
+        <IndustryStrip />
+        <WorkflowStory />
+        <Modules />
+        <Security />
+        <Rollout />
+        <Plans />
+        <Faq />
+        <AboutKnord />
+        <DemoSection />
+      </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }
