@@ -10,14 +10,15 @@ const QA = [
   ['How long does rollout take?', 'Most teams are live within a few weeks. It depends on how much data you bring and how many teams need training.'],
 ];
 
-export default function Faq() {
+// Shared by both product pages; the defaults are Nityavali's.
+export default function Faq({ items = QA, title = 'Things teams ask before they switch.', accent }) {
   const [open, setOpen] = useState(0);
   return (
     <section id="faq" className="px-[clamp(16px,4vw,40px)] pb-[clamp(72px,10vw,128px)]">
       <div className="mx-auto grid max-w-[1180px] gap-[clamp(28px,5vw,72px)] lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
-        <SectionHead eyebrow="Questions" title="Things teams ask before they switch." />
+        <SectionHead eyebrow="Questions" title={title} accent={accent} />
         <Reveal delay={0.1} className="border-t border-line">
-          {QA.map(([q, a], i) => {
+          {items.map(([q, a], i) => {
             const isOpen = open === i;
             return (
               <div key={q} className="border-b border-line">

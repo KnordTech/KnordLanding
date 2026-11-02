@@ -46,13 +46,13 @@ export function NityavaliMark({ size = 32, label }) {
   );
 }
 
-// Placeholder for the next product (its colour is not decided yet).
-export function NextProductMark({ size = 32 }) {
+// Ripple: an R whose leg kicks up into the arrow.
+export function RippleMark({ size = 32, label }) {
   return (
-    <Square size={size}>
-      <rect x="17" y="14" width="7" height="36" rx="3.5" fill={WHITE} opacity="0.35" />
-      <path d="M28 44 L44 20" stroke="#8B6CF0" strokeWidth="7" strokeLinecap="round" />
-      <path d="M34 19.5 H44.5 V30" stroke="#8B6CF0" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+    <Square size={size} label={label}>
+      <path d="M18 50 V14 H28 a8.5 8.5 0 0 1 0 17 H18" stroke={WHITE} strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M27 31 L39 49 L48 37" stroke="#8B6CF0" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M40 36 H48.5 V44.5" stroke="#8B6CF0" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
     </Square>
   );
 }

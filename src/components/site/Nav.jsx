@@ -1,18 +1,39 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import Logo from './Logo.jsx';
-import { NityavaliMark, NextProductMark } from './Marks.jsx';
-
-const LINKS = [
-  { href: '#workflow', label: 'Workflow' },
-  { href: '#modules', label: 'Modules' },
-  { href: '#security', label: 'Security' },
-  { href: '#plans', label: 'Plans' },
-];
+import { NityavaliMark, RippleMark } from './Marks.jsx';
 
 export const SIGN_IN_URL = 'https://nityavali.com/login';
 
-export default function Nav() {
+// What the nav shows on each product's page: its section links, sign-in and main button.
+const PRODUCTS = {
+  nityavali: {
+    home: '#top',
+    links: [
+      { href: '#workflow', label: 'Workflow' },
+      { href: '#modules', label: 'Modules' },
+      { href: '#security', label: 'Security' },
+      { href: '#plans', label: 'Plans' },
+    ],
+    signIn: SIGN_IN_URL,
+    cta: { href: '#demo', label: 'Book a demo' },
+    underline: 'bg-brand-600',
+  },
+  ripple: {
+    home: '#top',
+    links: [
+      { href: '#how', label: 'How it works' },
+      { href: '#evidence', label: 'Evidence' },
+      { href: '#tests', label: 'What you can test' },
+      { href: '#faq', label: 'FAQ' },
+    ],
+    cta: { href: '#early-access', label: 'Get early access' },
+    underline: 'bg-ripple-600',
+  },
+};
+
+export default function Nav({ product = 'nityavali' }) {
+  const { home, links: LINKS, signIn, cta, underline } = PRODUCTS[product];
   const [scrolled, setScrolled] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,7 +58,7 @@ export default function Nav() {
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
-  }, []);
+  }, [LINKS]);
 
   useEffect(() => {
     if (!productsOpen) return undefined;
@@ -63,8 +84,8 @@ export default function Nav() {
           scrolled ? 'h-[60px]' : 'h-[72px]'
         }`}
       >
-        <a href="#top" aria-label="Knord Technologies home">
-          <Logo />
+        <a href={home} aria-label="Knord Technologies home">
+          <Logo product={product} />
         </a>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
@@ -89,7 +110,7 @@ export default function Nav() {
                   transition={{ duration: 0.2 }}
                   className="absolute left-0 top-[calc(100%+8px)] w-[340px] rounded-2xl border border-line bg-paper p-2 shadow-[0_24px_48px_-24px_rgba(28,25,23,0.35)]"
                 >
-                  <a href="#top" onClick={() => setProductsOpen(false)} className="grid grid-cols-[36px_1fr] items-center gap-3 rounded-xl p-2.5 hover:bg-canvas">
+                  <a href={product === 'nityavali' ? '#top' : '/'} onClick={() => setProductsOpen(false)} className="grid grid-cols-[36px_1fr] items-center gap-3 rounded-xl p-2.5 hover:bg-canvas">
                     <NityavaliMark size={36} />
                     <span>
                       <span className="flex items-center gap-2 text-[14.5px] font-semibold">
@@ -98,13 +119,13 @@ export default function Nav() {
                       <span className="text-[13px] text-muted">Operations platform, from CRM to renewals</span>
                     </span>
                   </a>
-                  <a href="#knord" onClick={() => setProductsOpen(false)} className="grid grid-cols-[36px_1fr] items-center gap-3 rounded-xl p-2.5 hover:bg-canvas">
-                    <NextProductMark size={36} />
+                  <a href={product === 'ripple' ? '#top' : '/ripple'} onClick={() => setProductsOpen(false)} className="grid grid-cols-[36px_1fr] items-center gap-3 rounded-xl p-2.5 hover:bg-canvas">
+                    <RippleMark size={36} />
                     <span>
                       <span className="flex items-center gap-2 text-[14.5px] font-semibold">
-                        Next product <span className="chip plain">Coming soon</span>
+                        Ripple <span className="chip plain">Early access</span>
                       </span>
-                      <span className="text-[13px] text-muted">We are already building what&apos;s next</span>
+                      <span className="text-[13px] text-muted">See how people will react before you post</span>
                     </span>
                   </a>
                 </motion.div>
@@ -119,21 +140,23 @@ export default function Nav() {
             >
               {l.label}
               {active === l.href ? (
-                <motion.span layoutId="nav-underline" className="absolute inset-x-3 bottom-0.5 h-0.5 rounded bg-brand-600" />
+                <motion.span layoutId="nav-underline" className={`absolute inset-x-3 bottom-0.5 h-0.5 rounded ${underline}`} />
               ) : null}
             </a>
           ))}
         </nav>
 
         <div className="flex items-center gap-2">
-          <a href={SIGN_IN_URL} className="hidden rounded-lg px-3 py-2 text-[14.5px] font-medium hover:bg-sunk lg:inline-block">
-            Sign in
-          </a>
+          {signIn ? (
+            <a href={signIn} className="hidden rounded-lg px-3 py-2 text-[14.5px] font-medium hover:bg-sunk lg:inline-block">
+              Sign in
+            </a>
+          ) : null}
           <a
-            href="#demo"
+            href={cta.href}
             className="hidden whitespace-nowrap rounded-[10px] bg-ink px-4 py-2.5 text-[14px] font-semibold text-on-ink transition hover:-translate-y-px hover:bg-ink-2 min-[420px]:inline-block"
           >
-            Book a demo
+            {cta.label}
           </a>
           <button
             type="button"
@@ -160,7 +183,13 @@ export default function Nav() {
             aria-label="Mobile"
           >
             <div className="grid pb-4" onClick={(e) => e.target.tagName === 'A' && setMenuOpen(false)}>
-              {[...LINKS, { href: '#knord', label: 'About Knord' }, { href: SIGN_IN_URL, label: 'Sign in' }, { href: '#demo', label: 'Book a demo' }].map((l) => (
+              {[
+                ...LINKS,
+                product === 'ripple' ? { href: '/', label: 'Nityavali' } : { href: '/ripple', label: 'Ripple' },
+                { href: product === 'nityavali' ? '#knord' : '/#knord', label: 'About Knord' },
+                ...(signIn ? [{ href: signIn, label: 'Sign in' }] : []),
+                cta,
+              ].map((l) => (
                 <a key={l.href} href={l.href} className="border-b border-line px-1 py-3 font-medium">
                   {l.label}
                 </a>

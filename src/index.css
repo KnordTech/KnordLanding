@@ -5,7 +5,7 @@
 /*
  * v2.0 look — shared with the Nityavali app: warm off-white canvas, near-black anchors,
  * Geist. Knord takes the cobalt from its logo; each product keeps its own accent
- * (Nityavali = teal). Light only.
+ * (Nityavali = teal, Ripple = violet). Light only.
  */
 @theme {
   --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -35,6 +35,14 @@
   --color-knord-300: #9db1f2;
   --color-spark: #e8771a;
   --color-spark-50: #fdf1e6;
+
+  /* Ripple's accent (the arrow in its mark is #8b6cf0). */
+  --color-ripple-50: #f3f0fe;
+  --color-ripple-100: #e9e3fd;
+  --color-ripple-300: #b9a8f7;
+  --color-ripple-500: #8b6cf0;
+  --color-ripple-600: #6a4ad6;
+  --color-ripple-700: #5436b3;
 
   /* One colour per area of the product; each always means the same thing. */
   --color-sky: #1d5fb8;

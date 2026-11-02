@@ -1,11 +1,11 @@
 import { motion } from 'motion/react';
 import { openWhatsApp } from '../../lib/whatsapp.js';
 
-export default function WhatsAppButton() {
+export default function WhatsAppButton({ product }) {
   return (
     <motion.button
       type="button"
-      onClick={() => openWhatsApp()}
+      onClick={() => openWhatsApp(product)}
       initial={{ opacity: 0, y: 20, scale: 0.9 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ delay: 1.6, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}

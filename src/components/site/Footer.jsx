@@ -12,6 +12,14 @@ const COLUMNS = [
     ],
   },
   {
+    title: 'Ripple',
+    links: [
+      { href: '/ripple#how', label: 'How it works' },
+      { href: '/ripple#tests', label: 'What you can test' },
+      { href: '/ripple#early-access', label: 'Early access' },
+    ],
+  },
+  {
     title: 'Company',
     links: [
       { href: '/#knord', label: 'About Knord' },
@@ -25,12 +33,12 @@ export default function Footer() {
   return (
     <footer className="px-[clamp(16px,4vw,40px)] pb-10 pt-14 text-[14px] text-muted">
       <div className="mx-auto max-w-[1180px]">
-        <div className="grid grid-cols-2 gap-7 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid grid-cols-2 gap-7 md:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
           <div className="col-span-2 md:col-span-1">
             <a href="/#top" aria-label="Knord Technologies home">
               <Logo product={false} />
             </a>
-            <p className="mt-3 max-w-[34ch]">Operational software, built in India for teams everywhere.</p>
+            <p className="mt-3 max-w-[34ch]">Software for the businesses that keep things running, built in India.</p>
           </div>
           {COLUMNS.map((col) => (
             <div key={col.title}>
@@ -60,7 +68,7 @@ export default function Footer() {
         </div>
         <div className="mt-10 flex flex-wrap justify-between gap-3 border-t border-line pt-5 text-[13px]">
           <span>&copy; {new Date().getFullYear()} Knord Technologies. All rights reserved.</span>
-          <span>Nityavali is a Knord Technologies product.</span>
+          <span>Nityavali and Ripple are Knord Technologies products.</span>
         </div>
       </div>
     </footer>

@@ -2,7 +2,8 @@
 // appears as a plain wa.me link in the page HTML (cuts down on scraped spam).
 const PARTS = ['91', '98996', '36727'];
 
-export function openWhatsApp(message = 'Hi Knord team, I would like to know more about Nityavali.') {
+export function openWhatsApp(product = 'Nityavali') {
+  const message = `Hi Knord team, I would like to know more about ${product}.`;
   const url = `https://wa.me/${PARTS.join('')}?text=${encodeURIComponent(message)}`;
   window.open(url, '_blank', 'noopener');
 }

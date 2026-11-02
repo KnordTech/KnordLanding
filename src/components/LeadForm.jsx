@@ -22,6 +22,7 @@ export default function LeadForm({
   submitLabel = 'Send',
   messageLabel = 'How can we help?',
   messagePlaceholder = 'Tell us about your team and what you need.',
+  buttonClassName = 'bg-brand-600 hover:bg-brand-700',
 }) {
   const [fields, setFields] = useState(EMPTY);
   const [status, setStatus] = useState('idle');
@@ -111,7 +112,7 @@ export default function LeadForm({
         <button
           type="submit"
           disabled={status === 'submitting'}
-          className="w-full rounded-[10px] bg-brand-600 px-6 py-3.5 text-[15.5px] font-semibold text-on-ink transition hover:bg-brand-700 disabled:opacity-70 sm:w-auto"
+          className={`w-full rounded-[10px] px-6 py-3.5 text-[15.5px] font-semibold text-on-ink transition disabled:opacity-70 sm:w-auto ${buttonClassName}`}
         >
           {status === 'submitting' ? 'Sending…' : submitLabel}
         </button>

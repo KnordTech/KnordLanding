@@ -1,5 +1,5 @@
 import Reveal, { Eyebrow } from '../site/Reveal.jsx';
-import { KnordMark, NextProductMark } from '../site/Marks.jsx';
+import { KnordMark, RippleMark } from '../site/Marks.jsx';
 
 const PRINCIPLES = [
   ['Rooted in real work', 'Nityavali was built alongside a live operations team, one release at a time.'],
@@ -7,7 +7,7 @@ const PRINCIPLES = [
   ['India-based, customer-first', 'We work closely with the businesses we serve.'],
 ];
 
-// The slim "who is behind this" layer, plus the coming-soon teaser for the next product.
+// The slim "who is behind this" layer, plus a card pointing to Knord's second product, Ripple.
 export default function AboutKnord() {
   return (
     <section id="knord" className="px-[clamp(16px,4vw,40px)] pb-[clamp(72px,10vw,128px)]">
@@ -21,8 +21,9 @@ export default function AboutKnord() {
             We build software for the businesses that keep things running.
           </h2>
           <p className="mt-3 max-w-[58ch] text-[16px] leading-[1.6] text-muted">
-            Knord is an India-based software company. Nityavali is our first product, and it is used every day by teams
-            that sell, deliver, support and renew.
+            Knord is an India-based software company. Nityavali, our first product, is used every day by teams that sell,
+            deliver, support and renew. Ripple, our second, lets you test how people will react to a post before it goes
+            out.
           </p>
           <div className="mt-7 grid gap-5 sm:grid-cols-3">
             {PRINCIPLES.map(([t, b]) => (
@@ -37,7 +38,7 @@ export default function AboutKnord() {
         <Reveal delay={0.1} className="relative grid content-between gap-6 overflow-hidden rounded-[22px] bg-ink p-[clamp(24px,4vw,44px)] text-on-ink">
           <div
             aria-hidden="true"
-            className="glow-drift pointer-events-none absolute -right-24 -top-24 h-[320px] w-[320px] rounded-full bg-[radial-gradient(closest-side,rgba(139,108,240,0.5),transparent)]"
+            className="glow-drift pointer-events-none absolute -right-24 -top-24 h-[320px] w-[320px] rounded-full bg-[radial-gradient(closest-side,rgba(139,108,240,0.55),transparent)]"
           />
           <div
             aria-hidden="true"
@@ -45,22 +46,24 @@ export default function AboutKnord() {
           />
           <div className="relative">
             <div className="flex items-center gap-3">
-              <NextProductMark size={40} />
-              <span className="rounded-full border border-on-ink/15 px-2.5 py-1 font-mono text-[11px] text-on-ink/70">Coming soon</span>
+              <RippleMark size={40} />
+              <span className="rounded-full border border-on-ink/15 px-2.5 py-1 font-mono text-[11px] text-on-ink/70">
+                New · Early access
+              </span>
             </div>
             <h3 className="mt-5 text-[clamp(22px,2.6vw,28px)] font-bold leading-[1.15] tracking-[-0.02em]">
-              We&apos;re already building what&apos;s next.
+              Ripple: see how people will react before you post.
             </h3>
             <p className="mt-2 text-[15px] leading-[1.55] text-on-ink/60">
-              A new Knord product for operations teams is in the works, while Nityavali keeps getting better every
-              release.
+              Show a simulated audience your drafts. Ripple tells you who responds, who scrolls past, and why, with the
+              evidence behind every reason.
             </p>
           </div>
           <a
-            href="#demo"
+            href="/ripple"
             className="relative inline-flex w-fit items-center gap-2 rounded-[10px] bg-on-ink px-4 py-2.5 text-[14px] font-semibold text-ink transition hover:-translate-y-px"
           >
-            Keep me posted →
+            Meet Ripple →
           </a>
         </Reveal>
       </div>
