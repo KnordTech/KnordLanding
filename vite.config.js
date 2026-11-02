@@ -53,7 +53,8 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   return {
     plugins: [react(), tailwindcss(), leadDevApi(env)],
-    // ripple.html is the same app with Ripple's title and link preview (crawlers don't run JS).
-    build: { rollupOptions: { input: { main: 'index.html', ripple: 'ripple.html' } } },
+    // One HTML file per page, each the same app with that page's title and link preview
+    // (crawlers don't run JS).
+    build: { rollupOptions: { input: { main: 'index.html', nityavali: 'nityavali.html', ripple: 'ripple.html' } } },
   }
 })

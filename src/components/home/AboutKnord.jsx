@@ -25,6 +25,9 @@ export default function AboutKnord() {
             deliver, support and renew. Ripple, our second, lets you test how people will react to a post before it goes
             out.
           </p>
+          <a href="/" className="mt-4 inline-flex text-[15px] font-semibold text-knord hover:underline">
+            More about Knord →
+          </a>
           <div className="mt-7 grid gap-5 sm:grid-cols-3">
             {PRINCIPLES.map(([t, b]) => (
               <div key={t} className="grid gap-1 border-t border-line pt-3">

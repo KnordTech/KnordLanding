@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/nityavali", "destination": "/nityavali.html" },
     { "source": "/ripple", "destination": "/ripple.html" },
     { "source": "/((?!api/|assets/).*)", "destination": "/index.html" }
   ]

@@ -5,9 +5,9 @@ const COLUMNS = [
   {
     title: 'Nityavali',
     links: [
-      { href: '/#workflow', label: 'Workflow' },
-      { href: '/#modules', label: 'Modules' },
-      { href: '/#plans', label: 'Plans' },
+      { href: '/nityavali#workflow', label: 'Workflow' },
+      { href: '/nityavali#modules', label: 'Modules' },
+      { href: '/nityavali#plans', label: 'Plans' },
       { href: SIGN_IN_URL, label: 'Sign in' },
     ],
   },
@@ -22,8 +22,8 @@ const COLUMNS = [
   {
     title: 'Company',
     links: [
-      { href: '/#knord', label: 'About Knord' },
-      { href: '/#demo', label: 'Contact' },
+      { href: '/#mission', label: 'About Knord' },
+      { href: '/#contact', label: 'Contact' },
       { href: '/privacy', label: 'Privacy policy' },
     ],
   },
@@ -35,7 +35,7 @@ export default function Footer() {
       <div className="mx-auto max-w-[1180px]">
         <div className="grid grid-cols-2 gap-7 md:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
           <div className="col-span-2 md:col-span-1">
-            <a href="/#top" aria-label="Knord Technologies home">
+            <a href="/" aria-label="Knord Technologies home">
               <Logo product={false} />
             </a>
             <p className="mt-3 max-w-[34ch]">Software for the businesses that keep things running, built in India.</p>

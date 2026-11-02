@@ -159,6 +159,13 @@ def avatar(strokes, path, size=800):
 
 
 OG = {
+    'knord': {
+        'strokes': None, 'name': '', 'accent': '#2347C9',
+        'glows': [(1050, 80, 420, (35, 71, 201, 30)), (120, 600, 380, (232, 119, 26, 22))],
+        'lines': ['Software for', 'the businesses that'], 'last': ('', 'keep things running.'),
+        'sub': 'Knord Technologies builds Nityavali and Ripple. Made in India.',
+        'chips': [('Nityavali · Live', '#E4F3F0', '#0F7B6F'), ('Ripple · Early access', '#F3F0FE', '#6A4AD6')],
+    },
     'nityavali': {
         'strokes': NITYAVALI, 'name': 'Nityavali', 'accent': TEAL,
         'glows': [(1050, 80, 420, (30, 148, 132, 34)), (120, 600, 380, (29, 95, 184, 22))],
@@ -198,9 +205,10 @@ def og_image(path, product='nityavali'):
     draw_mark(img, KNORD, S(72), S(64), S(52))
     f_brand = ImageFont.truetype(SANS_BOLD, S(26))
     d.text((S(136), S(98)), 'Knord', font=f_brand, fill=hex2rgba(INK), anchor='ls')
-    d.text((S(222), S(98)), '/', font=f_brand, fill=hex2rgba('#D6D3D1'), anchor='ls')
-    draw_mark(img, p['strokes'], S(248), S(68), S(44))
-    d.text((S(304), S(98)), p['name'], font=f_brand, fill=hex2rgba(INK), anchor='ls')
+    if p['strokes']:
+        d.text((S(222), S(98)), '/', font=f_brand, fill=hex2rgba('#D6D3D1'), anchor='ls')
+        draw_mark(img, p['strokes'], S(248), S(68), S(44))
+        d.text((S(304), S(98)), p['name'], font=f_brand, fill=hex2rgba(INK), anchor='ls')
     # headline, last word in the product colour
     f_h = ImageFont.truetype(SANS_BOLD, S(66))
     y = 250
@@ -250,6 +258,7 @@ def main():
     lockup_png(RIPPLE, 'Ripple', 'by Knord Technologies', os.path.join(OUT, 'email', 'ripple-email-signature.png'), False, 96, bg='#FFFFFF')
     og_image(os.path.join(PUBLIC, 'og-image.png'))
     og_image(os.path.join(PUBLIC, 'og-image-ripple.png'), 'ripple')
+    og_image(os.path.join(PUBLIC, 'og-image-knord.png'), 'knord')
     with open(os.path.join(PUBLIC, 'favicon-ripple.svg'), 'w', encoding='utf-8') as f:
         f.write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">{mark_svg_body(RIPPLE)}</svg>\n')
     print('ok')

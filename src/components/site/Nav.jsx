@@ -5,10 +5,17 @@ import { NityavaliMark, RippleMark } from './Marks.jsx';
 
 export const SIGN_IN_URL = 'https://nityavali.com/login';
 
-// What the nav shows on each product's page: its section links, sign-in and main button.
-const PRODUCTS = {
+// What the nav shows on each page: its section links, sign-in and main button.
+const PAGES = {
+  knord: {
+    links: [
+      { href: '#mission', label: 'Mission' },
+      { href: '#how-we-work', label: 'How we work' },
+    ],
+    cta: { href: '#contact', label: 'Talk to us' },
+    underline: 'bg-knord',
+  },
   nityavali: {
-    home: '#top',
     links: [
       { href: '#workflow', label: 'Workflow' },
       { href: '#modules', label: 'Modules' },
@@ -20,7 +27,6 @@ const PRODUCTS = {
     underline: 'bg-brand-600',
   },
   ripple: {
-    home: '#top',
     links: [
       { href: '#how', label: 'How it works' },
       { href: '#evidence', label: 'Evidence' },
@@ -32,8 +38,11 @@ const PRODUCTS = {
   },
 };
 
+// `product` is the page the nav sits on: 'knord' (the company page), 'nityavali' or 'ripple'.
 export default function Nav({ product = 'nityavali' }) {
-  const { home, links: LINKS, signIn, cta, underline } = PRODUCTS[product];
+  const { links: LINKS, signIn, cta, underline } = PAGES[product];
+  const isKnord = product === 'knord';
+  const hrefFor = (page) => (page === product ? '#top' : `/${page}`);
   const [scrolled, setScrolled] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -84,9 +93,7 @@ export default function Nav({ product = 'nityavali' }) {
           scrolled ? 'h-[60px]' : 'h-[72px]'
         }`}
       >
-        <a href={home} aria-label="Knord Technologies home">
-          <Logo product={product} />
-        </a>
+        <Logo product={isKnord ? false : product} knordHref={isKnord ? '#top' : '/'} productHref="#top" />
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
           <div className="relative" ref={ddRef}>
@@ -110,7 +117,7 @@ export default function Nav({ product = 'nityavali' }) {
                   transition={{ duration: 0.2 }}
                   className="absolute left-0 top-[calc(100%+8px)] w-[340px] rounded-2xl border border-line bg-paper p-2 shadow-[0_24px_48px_-24px_rgba(28,25,23,0.35)]"
                 >
-                  <a href={product === 'nityavali' ? '#top' : '/'} onClick={() => setProductsOpen(false)} className="grid grid-cols-[36px_1fr] items-center gap-3 rounded-xl p-2.5 hover:bg-canvas">
+                  <a href={hrefFor('nityavali')} onClick={() => setProductsOpen(false)} className="grid grid-cols-[36px_1fr] items-center gap-3 rounded-xl p-2.5 hover:bg-canvas">
                     <NityavaliMark size={36} />
                     <span>
                       <span className="flex items-center gap-2 text-[14.5px] font-semibold">
@@ -119,7 +126,7 @@ export default function Nav({ product = 'nityavali' }) {
                       <span className="text-[13px] text-muted">Operations platform, from CRM to renewals</span>
                     </span>
                   </a>
-                  <a href={product === 'ripple' ? '#top' : '/ripple'} onClick={() => setProductsOpen(false)} className="grid grid-cols-[36px_1fr] items-center gap-3 rounded-xl p-2.5 hover:bg-canvas">
+                  <a href={hrefFor('ripple')} onClick={() => setProductsOpen(false)} className="grid grid-cols-[36px_1fr] items-center gap-3 rounded-xl p-2.5 hover:bg-canvas">
                     <RippleMark size={36} />
                     <span>
                       <span className="flex items-center gap-2 text-[14.5px] font-semibold">
@@ -185,8 +192,8 @@ export default function Nav({ product = 'nityavali' }) {
             <div className="grid pb-4" onClick={(e) => e.target.tagName === 'A' && setMenuOpen(false)}>
               {[
                 ...LINKS,
-                product === 'ripple' ? { href: '/', label: 'Nityavali' } : { href: '/ripple', label: 'Ripple' },
-                { href: product === 'nityavali' ? '#knord' : '/#knord', label: 'About Knord' },
+                ...['nityavali', 'ripple'].filter((p) => p !== product).map((p) => ({ href: `/${p}`, label: p === 'ripple' ? 'Ripple' : 'Nityavali' })),
+                ...(isKnord ? [] : [{ href: '/', label: 'About Knord' }]),
                 ...(signIn ? [{ href: signIn, label: 'Sign in' }] : []),
                 cta,
               ].map((l) => (
