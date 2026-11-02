@@ -1,4 +1,4 @@
-# Knord & Nityavali brand pack
+# Knord, Nityavali & Ripple brand pack
 
 Logos locked October 2026. Every Knord product uses the same mark rules: a near-black
 rounded square, white strokes, and one coloured stroke that turns into a north-east arrow.
@@ -7,7 +7,7 @@ rounded square, white strokes, and one coloured stroke that turns into a north-e
 | --- | --- | --- |
 | **Knord** (company) | K | Orange `#E8771A` |
 | **Nityavali** (product) | N | Teal `#1FA391` (brand teal `#0F7B6F` for text) |
-| Next product | its letter | its own colour (not chosen yet) |
+| **Ripple** (product) | R | Violet `#8B6CF0` (`#6A4AD6` for text) |
 
 Base colours: near-black `#1C1917`, warm canvas `#FAF9F6`. Font: **Geist** (Geist Mono for
 small labels).
@@ -16,7 +16,7 @@ small labels).
 
 | Need | File |
 | --- | --- |
-| Website, documents, slides (light background) | `svg/knord-lockup.svg`, `svg/nityavali-lockup.svg` |
+| Website, documents, slides (light background) | `svg/knord-lockup.svg`, `svg/nityavali-lockup.svg`, `svg/ripple-lockup.svg` |
 | Dark background | `svg/*-lockup-dark.svg` |
 | Icon only / favicon / app icon | `svg/*-mark.svg`, or `png/*-mark-<size>.png` (16–1024 px) |
 | WhatsApp / LinkedIn / Instagram profile picture | `social/*-avatar-800.png` |

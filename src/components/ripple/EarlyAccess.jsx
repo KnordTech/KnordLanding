@@ -37,6 +37,7 @@ export default function EarlyAccess() {
             messageLabel="What would you like to test?"
             messagePlaceholder="Your business, the platforms you post on, and a post or ad you're unsure about."
             buttonClassName="bg-ripple-600 hover:bg-ripple-700"
+            tag="Ripple early access"
           />
         </div>
       </Reveal>

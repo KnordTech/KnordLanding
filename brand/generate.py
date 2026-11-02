@@ -1,4 +1,5 @@
-"""Generate the Knord / Nityavali brand pack and the website's link-preview image."""
+"""Generate the Knord / Nityavali / Ripple brand pack and the website's link-preview images."""
+import math
 import os
 from fontTools.ttLib import TTFont
 from fontTools.pens.svgPathPen import SVGPathPen
@@ -15,6 +16,7 @@ PUBLIC = r'C:\Users\kavya\Desktop\Knord\Knord-LandingPage\public'
 
 INK, INK_SOFT, CANVAS = '#1C1917', '#2A2522', '#FAF9F6'
 WHITE, ORANGE, TEAL_ARROW, TEAL, MUTED, MUTED_DARK = '#FAF9F6', '#E8771A', '#1FA391', '#0F7B6F', '#78716C', '#A8A29E'
+VIOLET_ARROW, VIOLET = '#8B6CF0', '#6A4AD6'
 
 # ---- marks on a 64-unit grid: (kind, points/rect, stroke width, colour) ----
 KNORD = [
@@ -27,6 +29,22 @@ NITYAVALI = [
     ('line', [(17, 50), (17, 14), (39, 46)], 7, WHITE),
     ('line', [(39, 46), (39, 30), (47, 14)], 7, TEAL_ARROW),
     ('line', [(37.5, 14), (47.5, 14), (47.5, 24)], 5, TEAL_ARROW),
+]
+
+
+def bowl(x0, y0, r, n=24):
+    """The R's bowl as points: across the top, a half circle down the right, back to the stem."""
+    cx, cy = x0 + 10, y0 + r
+    pts = [(x0, y0), (cx, y0)]
+    pts += [(cx + r * math.sin(math.pi * i / n), cy - r * math.cos(math.pi * i / n)) for i in range(1, n)]
+    return pts + [(cx, y0 + 2 * r), (x0, y0 + 2 * r)]
+
+
+# 'path' strokes carry (SVG path, points for the PNG renderer).
+RIPPLE = [
+    ('path', ('M18 50 V14 H28 a8.5 8.5 0 0 1 0 17 H18', [(18, 50)] + bowl(18, 14, 8.5)), 7, WHITE),
+    ('line', [(27, 31), (39, 49), (48, 37)], 7, VIOLET_ARROW),
+    ('line', [(40, 36), (48.5, 36), (48.5, 44.5)], 5, VIOLET_ARROW),
 ]
 
 
@@ -43,7 +61,7 @@ def mark_svg_body(strokes, square=INK, ox=0, oy=0, s=1.0):
             x, y, ww, hh = data
             g.append(f'<rect x="{x}" y="{y}" width="{ww}" height="{hh}" rx="{ww / 2}" fill="{col}"/>')
         else:
-            d = 'M' + ' L'.join(f'{x} {y}' for x, y in data)
+            d = data[0] if kind == 'path' else 'M' + ' L'.join(f'{x} {y}' for x, y in data)
             g.append(f'<path d="{d}" fill="none" stroke="{col}" stroke-width="{w}" stroke-linecap="round" stroke-linejoin="round"/>')
     parts.append(f'<g transform="translate({ox} {oy}) scale({s})">' + ''.join(g) + '</g>')
     return ''.join(parts)
@@ -60,7 +78,7 @@ def draw_mark(img, strokes, x0, y0, size, square=INK):
             x, y, ww, hh = data
             d.rounded_rectangle([x0 + x * k, y0 + y * k, x0 + (x + ww) * k, y0 + (y + hh) * k], radius=ww * k / 2, fill=c)
             continue
-        pts = [(x0 + x * k, y0 + y * k) for x, y in data]
+        pts = [(x0 + x * k, y0 + y * k) for x, y in (data[1] if kind == 'path' else data)]
         r = w * k / 2
         for a, b in zip(pts, pts[1:]):
             d.line([a, b], fill=c, width=max(1, int(round(w * k))))
@@ -140,15 +158,35 @@ def avatar(strokes, path, size=800):
     img.resize((size, size), Image.LANCZOS).convert('RGB').save(path)
 
 
-def og_image(path):
-    """1200×630 link preview for the website (WhatsApp, LinkedIn, X…)."""
+OG = {
+    'nityavali': {
+        'strokes': NITYAVALI, 'name': 'Nityavali', 'accent': TEAL,
+        'glows': [(1050, 80, 420, (30, 148, 132, 34)), (120, 600, 380, (29, 95, 184, 22))],
+        'lines': ['Run the whole business,', 'from first enquiry'], 'last': ('to ', 'renewal.'),
+        'sub': 'Leads, clients, projects, people, support and AMC renewals in one workspace.',
+        'chips': [('New lead', '#E6F0FB', '#1D5FB8'), ('Project on track', '#EFEAFB', '#6941C6'),
+                  ('Ticket resolved', '#FDE8E3', '#C4402F'), ('Renewal in 30 days', '#E4F3F0', '#0F7B6F')],
+    },
+    'ripple': {
+        'strokes': RIPPLE, 'name': 'Ripple', 'accent': VIOLET,
+        'glows': [(1050, 80, 420, (139, 108, 240, 40)), (120, 600, 380, (232, 119, 26, 18))],
+        'lines': ['Know how people', 'will react'], 'last': ('before you ', 'post.'),
+        'sub': 'A simulated audience tells you who responds, who scrolls past, and why.',
+        'chips': [('Build the audience', '#E6F0FB', '#1D5FB8'), ('Simulate', '#F3F0FE', '#6A4AD6'),
+                  ('Explain why', '#FDF1DA', '#B25E09'), ('You approve', '#E4F3F0', '#0F7B6F')],
+    },
+}
+
+
+def og_image(path, product='nityavali'):
+    """1200x630 link preview for a product page (WhatsApp, LinkedIn, X...)."""
+    p = OG[product]
     W, H, ss = 1200, 630, 2
     img = Image.new('RGBA', (W * ss, H * ss), hex2rgba(CANVAS))
-    d = ImageDraw.Draw(img)
     # soft glows
     glow = Image.new('RGBA', img.size, (0, 0, 0, 0))
     gd = ImageDraw.Draw(glow)
-    for cx, cy, r, col in [(1050, 80, 420, (30, 148, 132, 34)), (120, 600, 380, (29, 95, 184, 22))]:
+    for cx, cy, r, col in p['glows']:
         for i in range(30):
             rr = r * ss * (1 - i / 30)
             a = int(col[3] * (i / 30))
@@ -156,32 +194,29 @@ def og_image(path):
     img = Image.alpha_composite(img, glow)
     d = ImageDraw.Draw(img)
     S = lambda v: int(v * ss)
-    # lockup: Knord / Nityavali
+    # lockup: Knord / <product>
     draw_mark(img, KNORD, S(72), S(64), S(52))
     f_brand = ImageFont.truetype(SANS_BOLD, S(26))
     d.text((S(136), S(98)), 'Knord', font=f_brand, fill=hex2rgba(INK), anchor='ls')
     d.text((S(222), S(98)), '/', font=f_brand, fill=hex2rgba('#D6D3D1'), anchor='ls')
-    draw_mark(img, NITYAVALI, S(248), S(68), S(44))
-    d.text((S(304), S(98)), 'Nityavali', font=f_brand, fill=hex2rgba(INK), anchor='ls')
-    # headline
+    draw_mark(img, p['strokes'], S(248), S(68), S(44))
+    d.text((S(304), S(98)), p['name'], font=f_brand, fill=hex2rgba(INK), anchor='ls')
+    # headline, last word in the product colour
     f_h = ImageFont.truetype(SANS_BOLD, S(66))
-    lines = [('Run the whole business,', INK), ('from first enquiry', INK)]
     y = 250
-    for text, col in lines:
-        d.text((S(72), S(y)), text, font=f_h, fill=hex2rgba(col), anchor='ls')
+    for text in p['lines']:
+        d.text((S(72), S(y)), text, font=f_h, fill=hex2rgba(INK), anchor='ls')
         y += 76
-    w_to = d.textlength('to ', font=f_h)
-    d.text((S(72), S(y)), 'to ', font=f_h, fill=hex2rgba(INK), anchor='ls')
-    d.text((S(72) + w_to, S(y)), 'renewal.', font=f_h, fill=hex2rgba(TEAL), anchor='ls')
+    lead, accent = p['last']
+    w_lead = d.textlength(lead, font=f_h)
+    d.text((S(72), S(y)), lead, font=f_h, fill=hex2rgba(INK), anchor='ls')
+    d.text((S(72) + w_lead, S(y)), accent, font=f_h, fill=hex2rgba(p['accent']), anchor='ls')
     f_sub = ImageFont.truetype(SANS_MED, S(24))
-    d.text((S(72), S(y + 62)), 'Leads, clients, projects, people, support and AMC renewals in one workspace.',
-           font=f_sub, fill=hex2rgba(MUTED), anchor='ls')
-    # colour chips, one per product area
+    d.text((S(72), S(y + 62)), p['sub'], font=f_sub, fill=hex2rgba(MUTED), anchor='ls')
+    # colour chips
     f_chip = ImageFont.truetype(SANS_BOLD, S(18))
-    chips = [('New lead', '#E6F0FB', '#1D5FB8'), ('Project on track', '#EFEAFB', '#6941C6'),
-             ('Ticket resolved', '#FDE8E3', '#C4402F'), ('Renewal in 30 days', '#E4F3F0', '#0F7B6F')]
     x = 72
-    for text, bg, fg in chips:
+    for text, bg, fg in p['chips']:
         tw = d.textlength(text, font=f_chip) / ss
         d.rounded_rectangle([S(x), S(538), S(x + tw + 32), S(578)], radius=S(20), fill=hex2rgba(bg))
         d.text((S(x + 16), S(564)), text, font=f_chip, fill=hex2rgba(fg), anchor='ls')
@@ -192,7 +227,7 @@ def og_image(path):
 def main():
     for sub in ('svg', 'png', 'social', 'email'):
         os.makedirs(os.path.join(OUT, sub), exist_ok=True)
-    for name, strokes in (('knord', KNORD), ('nityavali', NITYAVALI)):
+    for name, strokes in (('knord', KNORD), ('nityavali', NITYAVALI), ('ripple', RIPPLE)):
         with open(os.path.join(OUT, 'svg', f'{name}-mark.svg'), 'w', encoding='utf-8') as f:
             f.write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">{mark_svg_body(strokes)}</svg>\n')
         for s in (16, 32, 48, 64, 128, 180, 192, 256, 512, 1024):
@@ -206,10 +241,17 @@ def main():
             f.write(lockup_svg(NITYAVALI, 'Nityavali', 'by Knord Technologies', dark) + '\n')
         lockup_png(KNORD, 'Knord', 'TECHNOLOGIES', os.path.join(OUT, 'png', f'knord-lockup{sfx}@2x.png'), dark, 144)
         lockup_png(NITYAVALI, 'Nityavali', 'by Knord Technologies', os.path.join(OUT, 'png', f'nityavali-lockup{sfx}@2x.png'), dark, 144)
+        with open(os.path.join(OUT, 'svg', f'ripple-lockup{sfx}.svg'), 'w', encoding='utf-8') as f:
+            f.write(lockup_svg(RIPPLE, 'Ripple', 'by Knord Technologies', dark) + '\n')
+        lockup_png(RIPPLE, 'Ripple', 'by Knord Technologies', os.path.join(OUT, 'png', f'ripple-lockup{sfx}@2x.png'), dark, 144)
     # email signatures: white background (most mail clients), ~240px wide shown at half size
     lockup_png(KNORD, 'Knord', 'TECHNOLOGIES', os.path.join(OUT, 'email', 'knord-email-signature.png'), False, 96, bg='#FFFFFF')
     lockup_png(NITYAVALI, 'Nityavali', 'by Knord Technologies', os.path.join(OUT, 'email', 'nityavali-email-signature.png'), False, 96, bg='#FFFFFF')
+    lockup_png(RIPPLE, 'Ripple', 'by Knord Technologies', os.path.join(OUT, 'email', 'ripple-email-signature.png'), False, 96, bg='#FFFFFF')
     og_image(os.path.join(PUBLIC, 'og-image.png'))
+    og_image(os.path.join(PUBLIC, 'og-image-ripple.png'), 'ripple')
+    with open(os.path.join(PUBLIC, 'favicon-ripple.svg'), 'w', encoding='utf-8') as f:
+        f.write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">{mark_svg_body(RIPPLE)}</svg>\n')
     print('ok')
 
 

@@ -53,5 +53,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   return {
     plugins: [react(), tailwindcss(), leadDevApi(env)],
+    // ripple.html is the same app with Ripple's title and link preview (crawlers don't run JS).
+    build: { rollupOptions: { input: { main: 'index.html', ripple: 'ripple.html' } } },
   }
 })

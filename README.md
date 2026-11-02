@@ -27,16 +27,18 @@ npm run lint
 | `api/lead.js`, `lib/submitLead.js` | The demo form: Vercel function that sends leads to the Nityavali CRM |
 
 Routes: `/` (home), `/nityavali` (same page, for older links and ads), `/ripple`, `/privacy`.
+`/ripple` is served from `ripple.html`: the same app, with Ripple's title and link preview.
 
 ## Things to know
 
-- **Leads**: both forms (home and `/ripple`) post to `/api/lead`; Ripple leads are told apart by
-  their page URL. The endpoint forwards them to the Nityavali CRM webhook. Set
+- **Leads**: both forms (home and `/ripple`) post to `/api/lead`; Ripple leads arrive with
+  "[Ripple early access]" at the start of the message. The endpoint forwards them to the Nityavali CRM webhook. Set
   `NITYAVALI_WEBHOOK_URL` and `NITYAVALI_WEBHOOK_SECRET` in Vercel (see `.env.example`), for
   Preview deployments too if you want to test the form there.
 - **Logos** live in `src/components/site/Marks.jsx` (Knord: K with an orange arrow; Nityavali:
-  N with a teal arrow; Ripple: R with a violet arrow). The favicon is `public/favicon.svg`. The
-  brand pack in `brand/` does not have Ripple files yet.
+  N with a teal arrow; Ripple: R with a violet arrow). Favicons are `public/favicon.svg` and
+  `public/favicon-ripple.svg`. `brand/generate.py` rebuilds the brand pack and both link-preview
+  images (run `npm install geist` in `brand/fonts` first).
 - **Integration logos** come from the `simple-icons` package. Only show tools the app really
   connects to.
 - **Example data**: names and figures in the product mock-ups (Sunrise Clinics, ₹4.2Cr, the Kaapi

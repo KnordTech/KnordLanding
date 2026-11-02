@@ -23,6 +23,8 @@ export default function LeadForm({
   messageLabel = 'How can we help?',
   messagePlaceholder = 'Tell us about your team and what you need.',
   buttonClassName = 'bg-brand-600 hover:bg-brand-700',
+  // Prefixed to the message so leads for other products stand out in the Nityavali CRM.
+  tag = '',
 }) {
   const [fields, setFields] = useState(EMPTY);
   const [status, setStatus] = useState('idle');
@@ -50,7 +52,7 @@ export default function LeadForm({
         email: fields.email.trim(),
         phone: fields.phone.trim(),
         city: fields.city.trim(),
-        message: fields.message.trim(),
+        message: [tag && `[${tag}]`, fields.message.trim()].filter(Boolean).join(' '),
       });
       setStatus('success');
     } catch (err) {
